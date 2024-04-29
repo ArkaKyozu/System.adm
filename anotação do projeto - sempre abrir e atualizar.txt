@@ -112,3 +112,4 @@ no componente Pessoal.
 
 -criar função para tornar os inputs editaveis === Resolvido
 -criar função para deletar dados === em andamento
+-melhorar designer de edição do financeiro e produto
