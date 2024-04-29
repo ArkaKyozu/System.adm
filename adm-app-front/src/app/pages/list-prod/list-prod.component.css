@@ -1,0 +1,25 @@
+*{
+  margin-top: 3rem;
+}
+
+.table{
+  height: 75%;
+  width: 75%;
+}
+
+.lista{
+  text-align: -webkit-center;
+}
+
+h1{
+  color: blue;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 50PX;
+  text-align: center;
+  text-decoration: solid;
+}
+
+caption{
+  opacity: 20%;
+  text-align: right;
+}

@@ -1,0 +1,114 @@
+anotação do projeto  Sempre iniciar com git pull origin main 
+
+05/12 
+- paginga de cadastro concluida (falta: melhorar o desing, enviar os dados cadastrados para o banco de dados no backEnd);
+- tabela de exibição do balanço mensal concluida ( falta: linkar busca dos dados no banco de dados e melhorar desing);
+- Falta criar a pagina de cadastro de produtos,  ok
+- Falta criar pagina de exibição de estoques, ok 
+- melhorar desing do navbar e menu,
+
+ 09/01
+
+-concluido os designer do cadastro de produtos/ cadastros financeiro/ lista de produtos/ lista de balanços 
+-Falta criar pagina de dashboard 
+- falta configurar inserção no banco de dados para cadastrar itens 
+-resgatar os dados cadastrados no banco de dados 
+- criar uma pagina de login e cadastro de empresas 
+ 
+ 24/03 
+
+ - Gerar Banco de dados para cadastro de produtos - financeiro - funcionarios 
+ - Listar produtos do banco de dados na pagina web 
+ - criar função de apagar dados cadastrados
+ - criar pagina de login 
+
+ 26/03
+
+ -Iniciei a criação do backend da aplicação app-adm do zero 
+ -falta terminar a pasta repositories (feito) 
+ -falta criar a pasta routes, services 
+ -testar a criação do banco de dados  
+ - testar API 
+ - fazer a integração 
+
+27/03
+
+- Pastas Routes e Repositories criadas e configuradas 
+- teste do banco de dados concluido 
+- Teste de Api concluido, porem falta arruamar erro no delete 
+- Falta fazer a integração com o front.
+
+29/03 
+
+-Banco de dados criado 
+-API testada e 100% funcional 
+-fazer integração front com backEnd 
+-conclui integração do backEnd com os Produtos, ja é possivel ver a lista de produtos e cadastrar lançament no banco de dados
+-inda falta a integração do componente Pessoal, Financeiro, InfoAdc para consultas e cadastro e edição, 
+- no componente porduto falta integrar cadastro e edição.
+- ideia = colocar botão para deletar dados.
+
+01/04
+
+- estou perto de concluir a integração da API, ja é possivel cadastrar, deletar e editar casdastro de produtos 
+-falta arrumar a stilização do componente Produto e exibir produtos por Id para realizar a edição do item pela interface html
+
+03/04 
+
+- concluido as funcinalidades com componente Produtos, proxima etapa melhorar estilização.
+- concluidas as funções de cadastro, busca, delete no banco de dados do componente Financeiro 
+- comecei a configurar o componente Funcionarios, concluido o processo de busca de todos os dados e deletar lançamentos
+- falta configurar atualização de dados, e a busca por id, provavelmente vou ter que refazer a logica de banco de dados, preciso inserir chaves estrangeiras para melhorar o relacionamento
+no componente Pessoal. 
+- Melhorar estilização dos outros componentes
+
+06/04 
+
+- Concluida as associações das entidades,
+- concluida a parte de cadastro dos dados pessoais, dados de cargo,
+-precis configurar cadastro de dados pessoais  
+- Preciso pensar em como realizar a associação entre tabelas sem precisar usar o id no html,
+- pensei em contornar o problema das associações com card de confirmação antes do envio.
+
+
+14/06
+
+-Problema do cadastro de cargo parcialmente resolvido, adotei como solução um pré-cadastro de cargo caso não exista no banco de dados
+
+17/04
+
+-Problema com a exibição de dados ao selecionar um cargo Resolvido 
+- inserir função de cadastro caso não tenha o cargo cadastrado 
+- estou tendo problema para cadastrar novo cargo, o contrato esta retornando null mesmo preenchendo 
+
+23/04
+
+- separar a função do butão novo cadastro  e next  == resovido 
+- fazer com que apareça apenas uma opção de cadastro de novo dado == resolvido 
+- cadastro de pessoas vinculadas ao cargo == resolvido 
+-alterar estrutura da tabela informações adicionais para linkar o id da tebela pessoal nela, atualmente está ao contrario 
+- remolver o resumo de dados e as funçoes de agrupamento.
+
+24/04
+
+-  alterar a visualização do botão, cadastrar quando for novo lançamento e avançar quando ja existir = concluido 
+- Criar Formulario para cadastro de pessoas === concluido
+- definir logica  para enviar dados ao banco === concluido
+- atualizar a label cargoId para que aparece os dados recem cadastrados === concluido
+
+25/04
+
+- o cargo que for selecionado na opção cargo do componente Cargo dele aparecer no campo cargoId do compoente Pessoal === Concluido
+- mudar formato das datas do componente cargo e pessoal === Resolvido
+- Cargo não está recebendo a descrição === Resolvido 
+- tratamento para quando enviar os dados de cargo e pessoal === Resolvido
+- Concluida a parte de cadastro de Funcionario 
+- Concluida a listagem de Profissionais cadastrados no Banco de Dados
+- criar função para atualizar os dados do banco === resolvido 
+- criar função para tornar os inputs editaveis 
+- criar função para deletar os dados 
+
+29/04
+
+-criar função para tornar os inputs editaveis === Resolvido
+-criar função para deletar dados === em andamento

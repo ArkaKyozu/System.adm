@@ -1,0 +1,123 @@
+<nav class="navbar bg-body-primary navbar-fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">EMPRESA A </a>
+
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasNavbar"
+      aria-controls="offcanvasNavbar"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div
+      class="offcanvas offcanvas-end"
+      tabindex="-1"
+      id="offcanvasNavbar"
+      aria-labelledby="offcanvasNavbarLabel"
+    >
+      <div class="offcanvas-header">
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+          <li class="nav-item">
+            <img class="prof-img" src="../assets/avatar2.png" alt="profile" />
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="dashboard">Dashboard</a>
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              data-bs-toggle="collapse"
+              href="#Financeiro"
+              role="button"
+              aria-expanded="false"
+              aria-controls="Financeiro"
+              >Finanças</a
+            >
+            <div class="row">
+              <div class="col">
+                <div class="collapse multi-collapse" id="Financeiro">
+                  <div class="card card-body">
+                    <a class="nav-link" href="new_financeiro"
+                      >Cadastrar Lançamento</a
+                    >
+                    <a class="nav-link" href="list_financeiro"
+                      >Balanço Financeiro</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              data-bs-toggle="collapse"
+              href="#Estoque"
+              role="button"
+              aria-expanded="false"
+              aria-controls="Estoque"
+              >Estoque</a
+            >
+            <div class="row">
+              <div class="col">
+                <div class="collapse multi-collapse" id="Estoque">
+                  <div class="card card-body">
+                    <a class="nav-link" href="cad_produtos"
+                      >Cadastrar produto</a
+                    >
+                    <a class="nav-link" href="listar_produtos"
+                      >Listar Produto</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              data-bs-toggle="collapse"
+              href="#funcionario"
+              role="button"
+              aria-expanded="false"
+              aria-controls="funcionario"
+              >Funcionarios</a
+            >
+            <div class="row">
+              <div class="col">
+                <div class="collapse multi-collapse" id="funcionario">
+                  <div class="card card-body">
+                    <a class="nav-link" href="cadastro_funcionario"
+                      >Cadastrar Funcionarios</a
+                    >
+                    <a class="nav-link" href="lista_funcionarios"
+                      >Listar Funcionarios</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>

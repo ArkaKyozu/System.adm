@@ -1,0 +1,158 @@
+<div class="title">
+  <h1>Balanço Financeiro</h1>
+</div>
+
+<div>
+  <div class="lista mat-elevation-z8">
+    <table class="table table-hover">
+      <caption>
+        Tabela com a listagem de Finanças
+      </caption>
+
+      <thead>
+        <tr>
+          <th class="d-lg-none">id</th>
+          <th>Data</th>
+          <th>Gasto Diario</th>
+          <th>Faturamento Cartão</th>
+          <th>Faturamento Pix</th>
+          <th>Faturamento Dinheiro</th>
+          <th>Botão</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let item of dadosApi">
+          <td class="d-lg-none">{{ item.id }}</td>
+          <td>{{ item.Data }}</td>
+          <td id="nome">{{ item.GastoDiario }}</td>
+          <td>{{ item.FaturamentoCard }}</td>
+          <td>{{ item.FaturamentoPix }}</td>
+          <td>{{ item.FaturamentoCedula }}</td>
+          <td>
+            <!-- Button trigger modal -->
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop"
+              (click)="exibirItemId(item.id)"
+            >
+              Editar
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="deletarFinanceiro(item.id)"
+            >
+              Apagar
+            </button>
+
+          </td>
+
+          <td>
+            <div
+              class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+            >
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="staticBackdrop"
+                data-bs-backdrop="static"
+                data-bs-keyboard="false"
+                tabindex="-1"
+                aria-labelledby="staticBackdropLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel">
+                        Detalhes Financeiros
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+
+                    </div>
+
+                    <div class="modal-body">
+
+                      <div class="contentcard" name="Data">
+                        <label for="input">Data: </label>
+                        <input
+                          contenteditable="true"
+                          [(ngModel)]="dadosEditado.Data"
+
+                        />
+                      </div>
+
+                      <div class="contentcard" name="GastoDiario">
+                        <label for="input">Gasto Diario: </label>
+                        <input
+                          contenteditable="true"
+                          [(ngModel)]="dadosEditado.GastoDiario"
+                        />
+                      </div>
+
+                      <div class="contentcard" name="FaturamentoCard">
+                        <label for="input">Faturamento Cartão: </label>
+                        <input
+                          contenteditable="true"
+                          [(ngModel)]="dadosEditado.FaturamentoCard"
+                        />
+                      </div>
+
+                      <div class="contentcard" name="FaturamentoPix">
+                        <label for="input">Faturamento Pix: </label>
+                        <input
+                          contenteditable="true"
+                          [(ngModel)]="dadosEditado.FaturamentoPix"
+                        />
+                      </div>
+
+                      <div class="contentcard" name="FaturamentoCedula">
+                        <label for="input">Faturamento Cedula: </label>
+                        <input
+                          contenteditable="true"
+                          [(ngModel)]="dadosEditado.FaturamentoCedula"
+
+                        />
+                      </div>
+
+                      <div class="contentcard" name="id">
+                        <label for="input">ID: </label>
+                        <input disabled="true" [(ngModel)]="dadosEditado.id" />
+                      </div>
+                    </div>
+
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Fechar
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        (click)="atualizarItem(dadosEditado.id)"
+                      >
+                        Salvar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,124 @@
+<div class="container">
+  <div class="title">
+    <h1>Balanço Diario</h1>
+  </div>
+  <form class="formulario" autocomplete="off" method="get">
+    <div class="data">
+      <input
+      type="date"
+      class="form-control-data"
+      name="dataBalanço"
+      id="dataBalanço"
+      value="yyyy/dd/mm"
+      #dia
+      (change)="Edata(dia)"
+      required="true"
+       />
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <input name="GastoDiario"
+          type="number"
+          class="form-control"
+          id="inputsaida"
+          placeholder="Gasto diario"
+          #gastos
+          (change)="Esaida(gastos)"
+          [(ngModel)]="GastoDiario"
+
+        />
+      </div>
+      <div class="form-group">
+        <input name="FaturamentoCard"
+          type="number"
+          class="form-control "
+          id="inputEmail4"
+          placeholder="Faturamento em cartão"
+          #cartao
+          (change)="Ecartao(cartao)"
+          required="true"
+          [(ngModel)]="FaturamentoCard"
+        />
+      </div>
+      <div class="form-group">
+        <input name="FaturamentoPix"
+          type="number"
+          class="form-control "
+          id="inputEmail4"
+          placeholder="Faturamento em pix"
+          #pix
+          (change)="Epix(pix)"
+          required="true"
+          [(ngModel)]="FaturamentoPix"
+        />
+      </div>
+      <div class="form-group">
+        <input name="FaturamentoCedula"
+          type="number"
+          class="form-control "
+          id="inputEmail4"
+          placeholder="Faturamento em cedula"
+          #dinheiro
+          (change)="Edinheiro(dinheiro)"
+          required="true"
+          [(ngModel)]="FaturamentoCedula"
+        />
+      </div>
+    </div>
+    <!-- Button trigger modal -->
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#staticBackdrop "
+
+    >
+      CADASTRAR
+    </button>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="staticBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="staticBackdropLabel">
+              Acrescentar novos dados
+            </h2>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div> Data: {{this.Data}}</div>
+            <div>Saida: R$ {{this.GastoDiario}}</div>
+            <div>Faturamento Cartão:  R$ {{this.FaturamentoCard}}</div>
+            <div>Faturamento PIX: R$ {{this.FaturamentoPix}}</div>
+            <div>Faturamento Dinheiro: R$ {{this.FaturamentoCedula}} </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Fechar
+            </button>
+            <button type="button" class="btn btn-success" (click)="cadastrarFinanceiro()">Enviar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

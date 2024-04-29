@@ -1,0 +1,23 @@
+.example-stepper {
+  margin-top: 4.5rem;
+  margin-left: 20rem;
+  margin-right: 10rem;
+
+}
+
+.mat-mdc-form-field{
+  padding: 1rem;
+}
+
+.mat-step{
+  margin-left: 15rem;
+  margin-right: 20rem;
+}
+
+.invisible {
+  display: none;
+}
+
+.btns{
+  text-align: right;
+}

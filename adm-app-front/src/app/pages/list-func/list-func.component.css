@@ -1,0 +1,59 @@
+.row{
+  margin: 1rem;
+}
+
+.col{
+  margin: 1rem;
+  text-align: center;
+}
+
+.card{
+  border-radius: 1rem;
+}
+
+.card-body{
+  text-align: center;
+  padding: 2rem;
+}
+
+.card-img-top{
+  transition: transform .5s;
+  border-radius: 1rem;
+  width: 12rem;
+}
+
+.card-img-top:hover{
+  transform: scale(1.2);
+}
+
+.modal-dialog{
+  text-align: center;
+}
+
+.modal-content{
+  width: 57vw;
+  margin-left: -50%;
+}
+
+.invisible {
+  display: none;
+}
+
+.form-label {
+  padding: 0.5rem;
+}
+
+.form-control{
+  text-align: center;
+}
+
+.modal-title{
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: xx-large;
+  font-style: italic;
+  text-transform: capitalize;
+  margin-left: 26rem;
+  padding: 1.5rem;
+}
+
+

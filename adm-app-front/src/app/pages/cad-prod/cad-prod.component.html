@@ -1,0 +1,162 @@
+<div class="container">
+  <div class="title">
+    <h1>Cadastrar Produtos</h1>
+  </div>
+  <form class="formulario" autocomplete="off" method="get">
+    <div class="data">
+      <input
+        type="date"
+        class="form-control-data"
+        name="dataDia"
+        id="start"
+        value="yyyy/dd/mm"
+        #dia
+        (change)="Edata(dia)"
+        required="true"
+      />
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-12 p-2">
+        <div class="campo">
+          <input
+            type="text"
+            class="form-control"
+            id="inputprod"
+            placeholder="Produto"
+            #prod
+            (change)="Eprod(prod)"
+            [(ngModel)]="NomeProduto"
+            name="NomeProduto"
+          />
+        </div>
+      </div>
+
+      <div class="form-group col-md-12 p-2">
+        <div class="campo">
+          <input
+            type="number"
+            class="form-control"
+            id="inputEmail4"
+            placeholder="Valor"
+            #total
+            (change)="Evalor(total)"
+            required="true"
+            [(ngModel)]="Valor"
+            name="Valor"
+          />
+        </div>
+      </div>
+
+      <div class="form-group col-md-12 p-2">
+        <div class="campo">
+          <input
+            type="number"
+            class="form-control"
+            id="inputEmail4"
+            placeholder="Quantidade"
+            #quant
+            (change)="Equantidade(quant)"
+            required="true"
+            [(ngModel)]="Quantidade"
+            name="Quantidade"
+          />
+        </div>
+      </div>
+
+      <div class="form-group col-md-12 p-2">
+        <div class="campo">
+          <input
+            type="text"
+            class="form-control"
+            id="inputEmail4"
+            placeholder="Fornecedor"
+            #forne
+            (change)="EFornecedor(forne)"
+            required="true"
+            [(ngModel)]="Fornecedor"
+            name="Fornecedor"
+          />
+        </div>
+      </div>
+
+      <div class="form-group col-md-12 p-2">
+        <div class="campo">
+          <input
+            type="text"
+            class="form-control"
+            id="inputEmail4"
+            placeholder="Observação"
+            #obs
+            (change)="EObservacao(obs)"
+            required="true"
+            [(ngModel)]="Observacao"
+            name="Observacao"
+          />
+        </div>
+      </div>
+    </div>
+    <!-- Button trigger modal -->
+    <div class="cadastrar">
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#staticBackdrop "
+      >
+        CADASTRAR
+      </button>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="staticBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">
+              Acrescentar novos dados
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div>Data: {{ this.data }}</div>
+            <div>Produto: {{ this.NomeProduto }}</div>
+            <div>Valor unitário: {{ this.Valor }}</div>
+            <div>Quantidade: {{ this.Quantidade }}</div>
+            <div>Fornecedor: {{ this.Fornecedor }}</div>
+            <div>Observação: {{ this.Observacao }}</div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Fechar
+            </button>
+            <button
+              type="submit"
+              class="btn btn-success"
+              (click)="enviarDados()"
+            >
+              Enviar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

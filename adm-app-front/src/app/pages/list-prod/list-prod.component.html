@@ -1,0 +1,148 @@
+<div class="title">
+  <h1>Lista de Produtos</h1>
+</div>
+
+<div>
+  <div class="lista mat-elevation-z8">
+    <table class="table table-hover">
+      <caption>
+        Tabela com a listagem de produtos
+      </caption>
+
+      <thead>
+        <tr>
+          <th class="d-lg-none">id</th>
+          <th>Data</th>
+          <th>Nome do Produto</th>
+          <th>Valor</th>
+          <th>Quantidade</th>
+          <th>Fornecedor</th>
+          <th>Observção</th>
+          <th>Botão</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let item of dadosApi">
+          <td class="d-lg-none">{{ item.id }}</td>
+          <td>{{ item.data }}</td>
+          <td id="nome">{{ item.NomeProduto }}</td>
+          <td>{{ item.Valor }}</td>
+          <td>{{ item.Quantidade }}</td>
+          <td>{{ item.Fornecedor }}</td>
+          <td>{{ item.Observacao }}</td>
+          <td>
+            <!-- Button trigger modal -->
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop"
+              (click)="exibirItemId(item.id)"
+            >
+              Editar
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="excluirItem(item.id)"
+            >
+              Apagar
+            </button>
+
+          </td>
+
+          <td>
+
+            <div
+              class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+            >
+              <!-- Modal -->
+              <div
+                class="modal fade"
+                id="staticBackdrop"
+                data-bs-backdrop="static"
+                data-bs-keyboard="false"
+                tabindex="-1"
+                aria-labelledby="staticBackdropLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel">
+                        Detalhes Produto
+                      </h5>
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                      ></button>
+
+                    </div>
+
+                    <div class="modal-body">
+
+                      <div class="contentcard" name="data">
+                        <label for="input">Data: </label>
+                          <input contenteditable="true" [(ngModel)]="dadosEditados.data"/>
+                      </div>
+
+                      <div class="contentcard" name="NomeProduto">
+                        <label for="input">Nome do Produto: </label>
+                          <input contenteditable="true"
+                          [(ngModel)]="dadosEditados.NomeProduto"/>
+                      </div>
+
+                      <div class="contentcard" name="Valor">
+                        <label for="input">Valor: </label>
+                          <input contenteditable="true" [(ngModel)]="dadosEditados.Valor"/>
+                      </div>
+
+                      <div class="contentcard" name="Quantidade">
+                        <label for="input">Quantidade: </label>
+                          <input contenteditable="true" [(ngModel)]="dadosEditados.Quantidade"/>
+                      </div>
+
+                      <div class="contentcard" name="Fornecedor">
+                        <label for="input">Fornecedor: </label>
+                          <input contenteditable="true" [(ngModel)]="dadosEditados.Fornecedor"/>
+                      </div>
+
+                      <div class="contentcard" name="Observacao">
+                        <label for="input">Observação: </label>
+                          <input contenteditable="true" [(ngModel)]="dadosEditados.Observacao"/>
+                      </div>
+
+
+                      <div class="contentcard" name="id">
+                        <label for="input">ID: </label>
+                          <input disabled="true" [(ngModel)]="dadosEditados.id"/>
+                      </div>
+                    </div>
+
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal"
+                      >
+                        Fechar
+                      </button>
+                      <button type="button" class="btn btn-primary" (click)="atualizarItem(dadosEditados.id)">
+                        Salvar
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

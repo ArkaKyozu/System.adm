@@ -1,0 +1,26 @@
+.navbar{
+  background-color: rgb(15, 99, 124);
+}
+
+.navbar-brand{
+  margin: 1rem;
+  text-align: center;
+}
+
+.nav-item{
+  align-self: center;
+  margin: 1rem;
+}
+
+.nav-item img{
+  margin: 0;
+}
+
+.prof-img{
+  margin: 5rem;
+}
+
+.nav-link{
+  text-align: center;
+}
+

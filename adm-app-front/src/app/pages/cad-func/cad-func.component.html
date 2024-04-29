@@ -1,0 +1,240 @@
+
+<mat-stepper
+  class="example-stepper"
+  [orientation]="(stepperOrientation | async)!"
+>
+  <mat-step [stepControl]="firstFormGroup" label="Cadastro Cargo" class="top">
+    <form [formGroup]="firstFormGroup" class="firstFormGroup">
+      <mat-form-field>
+        <mat-label>select cargo</mat-label>
+        <mat-select
+          (selectionChange)="preencherCamposDoFormulario($event.value)"
+        >
+          <mat-option *ngFor="let cargo of dadosCargo" [value]="cargo.id">
+            {{ cargo.NomeCargo }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input
+          matInput
+          placeholder="Nome do Cargo"
+          formControlName="NomeCargo"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>dataAdm</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          placeholder="data admissão"
+          formControlName="DataAdmissao"
+          required
+        />
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Contrato</mat-label>
+        <input
+          matInput
+          placeholder="Tipo de contrato"
+          formControlName="Contrato"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Remuneração</mat-label>
+        <input
+          matInput
+          placeholder="Remuneração"
+          type="number"
+          formControlName="Remuneracao"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Jornada</mat-label>
+        <input
+          matInput
+          type="number"
+          placeholder="carga horaria"
+          formControlName="Jornada"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Descricao</mat-label>
+        <input matInput  placeholder="Descricao" formControlName="Descricao" />
+      </mat-form-field>
+
+      <div class="btns">
+        <div [ngClass]="{ visible: !btns, invisible: btns }">
+          <button
+            mat-button
+            matStepperNext
+            [disabled]="!firstFormGroup.valid"
+            (click)="atualizarConteudo(); cadastroCargo()"
+          >
+            cadastrar
+          </button>
+        </div>
+        <div [ngClass]="{ visible: btns, invisible: !btns }">
+          <button mat-button matStepperNext [disabled]="!firstFormGroup.valid" (click)="atualizarConteudo()">
+            Next
+          </button>
+        </div>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="secondFormGroup" label="Cadastro Profissional">
+    <form [formGroup]="secondFormGroup">
+      <mat-form-field>
+        <mat-label>CPF</mat-label>
+        <input
+          matInput
+          type="number"
+          placeholder="Nome do Cargo"
+          formControlName="CPF"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Nome</mat-label>
+        <input
+          matInput
+          placeholder="Nome Completo"
+          formControlName="Nome"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput type="email" placeholder="Email" formControlName="Email" required />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Estado Civil</mat-label>
+        <input
+          matInput
+          placeholder="Estado Civil"
+          formControlName="EstadoCivil"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>RG</mat-label>
+        <input matInput type="number" placeholder="RG" formControlName="RG" required />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Data de Nascimento</mat-label>
+        <input
+          matInput
+          [matDatepicker]="dateN"
+          placeholder="Data de Nascimento"
+          formControlName="DataNascimento"
+          required
+        />
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="dateN"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #dateN></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Contato</mat-label>
+        <input
+          matInput
+          type="number"
+          placeholder="Contato"
+          formControlName="Contato"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Endereco</mat-label>
+        <input
+          matInput
+          placeholder="Endereco"
+          formControlName="Endereco"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Cidade</mat-label>
+        <input
+          matInput
+          placeholder="Cidade"
+          formControlName="Cidade"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Banco</mat-label>
+        <input matInput placeholder="Banco" formControlName="Banco" required />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>AgConta</mat-label>
+        <input
+          matInput
+          type="number"
+          placeholder="AgConta"
+          formControlName="ag_conta"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>PisPasep</mat-label>
+        <input
+          matInput
+          type="number"
+          placeholder="PisPasep"
+          formControlName="PISPASEP"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field class="d-none">
+        <mat-label>cargoId</mat-label>
+        <input matInput formControlName="cargoId" required />
+      </mat-form-field>
+
+      <div class="btns">
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext [disabled]="!secondFormGroup.valid" (click)="enviarDadosPessoal()">
+          Next
+        </button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="thirdFormGroup" label="Documentação" class="top">
+    <form [formGroup]="thirdFormGroup" class="firstFormGroup">
+
+    </form>
+  </mat-step>
+
+</mat-stepper>

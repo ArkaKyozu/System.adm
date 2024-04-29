@@ -1,0 +1,322 @@
+<div class="row row-cols-1 row-cols-md-6 g-6">
+  <div class="col" *ngFor="let item of dadosPessoalApi">
+    <!-- Button trigger modal -->
+    <button
+      type="button"
+      class="btn"
+      data-bs-toggle="modal"
+      data-bs-target="#staticBackdrop"
+      (click)="exibirCargo(item.id); exibirFunc(item.id)"
+    >
+      <img
+        src="assets/avatar2.png"
+        alt="Foto Funcionario"
+        class="card-img-top"
+      />
+    </button>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="staticBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">
+              {{ dadosExibidos.Nome }}
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+              (click)="ngOnInit()"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <div class="row">
+                <div class="col">
+                  <img
+                    src="assets\IMG_20230607_154036.jpg"
+                    class="card-img-top"
+                    alt="PROFILE"
+                  />
+                </div>
+                <div class="col">
+                  <div class="row-md-12">
+                    <label for="floatingInputValue" class="form-label"
+                      >Nome</label
+                    >
+                    <input
+                      name="Nome"
+                      type="text"
+                      [disabled]="this.yteste"
+                      class="form-control"
+                      id="nome"
+                      [(ngModel)]="dadosExibidos.Nome"
+                    />
+                  </div>
+                  <div class="row-md-12">
+                    <label for="inputPassword4" class="form-label"
+                      >Data de Nacimento</label
+                    >
+                    <input
+                      name="DataNascimento"
+                      [disabled]="this.yteste"
+                      type="date"
+                      class="form-control"
+                      id="dta_nasc"
+                      value="yyyy-MM-dd"
+                      [(ngModel)]="dadosExibidos.DataNascimento"
+                    />
+                  </div>
+                  <div class="row-md-12">
+                    <label for="inputPassword4" class="form-label">CPF</label>
+                    <input
+                      name="CPF"
+                      [disabled]="this.yteste"
+                      type="text"
+                      class="form-control"
+                      id="cpf"
+                      value="010.000.000-00"
+                      [(ngModel)]="dadosExibidos.CPF"
+                    />
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="row-md-12">
+                    <label for="inputPassword4" class="form-label"
+                      >Estado Civil</label
+                    >
+                    <input
+                      name="EstadoCivil"
+                      [disabled]="this.yteste"
+                      type="text"
+                      class="form-control"
+                      id="sobrenome"
+                      value="Solteiro"
+                      [(ngModel)]="dadosExibidos.EstadoCivil"
+                    />
+                  </div>
+                  <div class="row-md-12">
+                    <label for="inputPassword4" class="form-label">RG</label>
+                    <input
+                      name="RG"
+                      [disabled]="this.yteste"
+                      type="text"
+                      class="form-control"
+                      id="sobrenome"
+                      value="0.000-000"
+                      [(ngModel)]="dadosExibidos.RG"
+                    />
+                  </div>
+
+                  <div class="row-md-12">
+                    <label for="inputPassword4" class="form-label"
+                      >Cidade</label
+                    >
+                    <input
+                      name="cidade"
+                      [disabled]="this.yteste"
+                      type="text"
+                      class="form-control"
+                      id="sobrenome"
+                      [(ngModel)]="dadosExibidos.Cidade"
+                    />
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="row-md-12">
+                    <label for="inputPassword4" class="form-label">Email</label>
+                    <input
+                      name="Email"
+                      [disabled]="this.yteste"
+                      type="text"
+                      class="form-control"
+                      id="email"
+                      value="filipegabriel25@gmail.com"
+                      [(ngModel)]="dadosExibidos.Email"
+                    />
+                  </div>
+                  <div class="row-md-12">
+                    <label for="inputPassword4" class="form-label"
+                      >Contato</label
+                    >
+                    <input
+                      name="Contato"
+                      [disabled]="this.yteste"
+                      type="number"
+                      class="form-control"
+                      id="contato"
+                      value="61992500260"
+                      [(ngModel)]="dadosExibidos.Contato"
+                    />
+                  </div>
+                  <div class="row-md-12">
+                    <label for="inputPassword4" class="form-label"
+                      >Endereço</label
+                    >
+                    <input
+                      name="Endereco"
+                      [disabled]="this.yteste"
+                      type="text"
+                      class="form-control"
+                      id="contato"
+                      value="Quadra 10 casa 02 Del Lago"
+                      [(ngModel)]="dadosExibidos.Endereco"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div class="row-md-12">
+                    <label for="floatingInputValue" class="form-label"
+                      >Cargo / Função</label
+                    >
+                    <input
+                      name="NomeCargo"
+                      [disabled]="this.yteste"
+                      type="text"
+                      class="form-control"
+                      id="nome"
+                      value="Desenvolvedor"
+                      [(ngModel)]="dadosExibidosCargo.NomeCargo"
+                    />
+                  </div>
+                  <div class="row-md-12">
+                    <label for="inputPassword4" class="form-label"
+                      >Jornada de Trabalho</label
+                    >
+                    <input
+                      name="Jornada"
+                      [disabled]="this.yteste"
+                      type="text"
+                      class="form-control"
+                      id="dta_nasc"
+                      value="40 h"
+                      [(ngModel)]="dadosExibidosCargo.Jornada"
+                    />
+                  </div>
+                  <div class="row-md-12">
+                    <label for="inputPassword4" class="form-label"
+                      >Dados Bancarios</label
+                    >
+                    <input
+                      name="Banco"
+                      [disabled]="this.yteste"
+                      type="text"
+                      class="form-control"
+                      id="cpf"
+                      [(ngModel)]="dadosExibidos.Banco"
+                    />
+                  </div>
+                  <div class="row-md-12">
+                    <label for="inputPassword4" class="form-label"
+                      >Tipo de Contrato</label
+                    >
+                    <input
+                      name="Contrato"
+                      [disabled]="this.yteste"
+                      type="text"
+                      class="form-control"
+                      id="cpf"
+                      [(ngModel)]="dadosExibidosCargo.Contrato"
+                    />
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="row-md-12">
+                    <label for="floatingInputValue" class="form-label"
+                      >Remuneração</label
+                    >
+                    <input
+                      name="Remuneracao"
+                      [disabled]="this.yteste"
+                      type="text"
+                      class="form-control"
+                      id="nome"
+                      value="R$ 2500,000"
+                      [(ngModel)]="dadosExibidosCargo.Remuneracao"
+                    />
+                  </div>
+                  <div class="row-md-12">
+                    <label for="floatingInputValue" class="form-label"
+                      >Data de Admissão</label
+                    >
+                    <input
+                      name="DataAdmissao"
+                      [disabled]="this.yteste"
+                      type="text"
+                      class="form-control"
+                      id="nome"
+                      value="24/03/2024"
+                      [(ngModel)]="dadosExibidosCargo.DataAdmissao"
+                    />
+                  </div>
+                  <div class="row-md-12">
+                    <label for="floatingInputValue" class="form-label"
+                      >Conta e Agencia</label
+                    >
+                    <input
+                      [disabled]="this.yteste"
+                      type="text"
+                      class="form-control"
+                      id="nome"
+                      [(ngModel)]="dadosExibidos.ag_conta"
+                    />
+                  </div>
+                  <div class="row-md-12">
+                    <label for="inputPassword4" class="form-label"
+                      >Pis/Pasep</label
+                    >
+                    <input
+                      name="Pis"
+                      [disabled]="this.yteste"
+                      type="text"
+                      class="form-control"
+                      id="cpf"
+                      [(ngModel)]="dadosExibidos.PISPASEP"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+              (click)="ngOnInit()"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary" (click)="editar()">
+              {{ this.butao }}
+            </button>
+            <div [ngClass]="{ visible: btns, invisible: !btns }">
+              <button
+                type="button"
+                class="btn btn-primary"
+                (click)="UpdateDadosPessoal(dadosExibidos.id); updateCargo(dadosExibidosCargo.id)"
+              >
+                Salvar
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h4 class="card-title">{{ item.Nome }}</h4>
+    </div>
+  </div>
+</div>
