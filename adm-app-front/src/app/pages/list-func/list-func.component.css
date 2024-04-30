@@ -54,6 +54,28 @@
   text-transform: capitalize;
   margin-left: 26rem;
   padding: 1.5rem;
+  color: aliceblue;
+}
+
+.modal-footer{
+  margin-right: 4rem;
+}
+
+.apagar{
+  align-items: start;
+    flex: auto;
+    display: inline-flex;
+    margin-left: 4rem;
+}
+
+.btn-close{
+  margin: 1rem;
+}
+
+.modal-header{
+  padding: 1rem;
+  margin: initial;
+  background-color: teal;
 }
 
 

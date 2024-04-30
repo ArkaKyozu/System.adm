@@ -33,7 +33,7 @@
             </h5>
             <button
               type="button"
-              class="btn-close"
+              class="btn-close bg-danger"
               data-bs-dismiss="modal"
               aria-label="Close"
               (click)="ngOnInit()"
@@ -291,6 +291,18 @@
             </div>
           </div>
           <div class="modal-footer">
+
+            <div class="apagar">
+              <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+              (click)="deletarPessoal(dadosExibidos.id)"
+            >
+              Deletar
+            </button>
+            </div>
+
             <button
               type="button"
               class="btn btn-secondary"

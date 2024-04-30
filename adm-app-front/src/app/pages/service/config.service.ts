@@ -20,7 +20,7 @@ export class ConfigService {
     url: string = 'http://localhost:3000/'
 
 
-// metodo push
+// metodo post
 
   enviodeDadosApi(dados: any): Observable<any>{
     return this.http.post<any>(`${this.url}addProduto`, dados)
@@ -47,6 +47,14 @@ export class ConfigService {
 
   deletarFinanceiro(id:number): Observable<any>{
     return this.http.delete<any>(`${this.url}deleteFinanceiro/${id}`)
+  }
+
+  deletarPessoal(id:number): Observable<any>{
+    return this.http.delete<any>(`${this.url}deletePessoal/${id}`)
+  }
+
+  deleteCargo(id:number): Observable<any>{
+    return this.http.delete<any>(`${this.url}deleteCargo/${id}`)
   }
 
 

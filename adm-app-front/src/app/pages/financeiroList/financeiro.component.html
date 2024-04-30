@@ -9,7 +9,7 @@
         Tabela com a listagem de Finanças
       </caption>
 
-      <thead>
+      <thead class="head">
         <tr>
           <th class="d-lg-none">id</th>
           <th>Data</th>
@@ -21,14 +21,14 @@
         </tr>
       </thead>
 
-      <tbody>
-        <tr *ngFor="let item of dadosApi">
+      <tbody class="content">
+        <tr [ngClass]="{linha: classTess, nlinha: !classTess }" *ngFor="let item of dadosApi">
           <td class="d-lg-none">{{ item.id }}</td>
-          <td>{{ item.Data }}</td>
-          <td id="nome">{{ item.GastoDiario }}</td>
-          <td>{{ item.FaturamentoCard }}</td>
-          <td>{{ item.FaturamentoPix }}</td>
-          <td>{{ item.FaturamentoCedula }}</td>
+          <td  >{{ item.Data }}</td>
+          <td id="nome"> <span matTextPrefix>R$&nbsp;</span> {{ item.GastoDiario }}</td>
+          <td><span matTextPrefix>R$&nbsp;</span> {{ item.FaturamentoCard }}</td>
+          <td><span matTextPrefix>R$&nbsp;</span> {{ item.FaturamentoPix }}</td>
+          <td><span matTextPrefix>R$&nbsp;</span> {{ item.FaturamentoCedula }}</td>
           <td>
             <!-- Button trigger modal -->
             <button
@@ -73,25 +73,25 @@
                       </h5>
                       <button
                         type="button"
-                        class="btn-close"
+                        class="btn-close bg-danger"
                         data-bs-dismiss="modal"
                         aria-label="Close"
+                        (click)="alteraHover()"
                       ></button>
 
                     </div>
 
                     <div class="modal-body">
 
-                      <div class="contentcard" name="Data">
+                      <div class="contentcard row-cols-2" name="Data">
                         <label for="input">Data: </label>
                         <input
                           contenteditable="true"
                           [(ngModel)]="dadosEditado.Data"
-
                         />
                       </div>
 
-                      <div class="contentcard" name="GastoDiario">
+                      <div class="contentcard row-cols-2" name="GastoDiario">
                         <label for="input">Gasto Diario: </label>
                         <input
                           contenteditable="true"
@@ -99,7 +99,7 @@
                         />
                       </div>
 
-                      <div class="contentcard" name="FaturamentoCard">
+                      <div class="contentcard row-cols-2" name="FaturamentoCard">
                         <label for="input">Faturamento Cartão: </label>
                         <input
                           contenteditable="true"
@@ -107,7 +107,7 @@
                         />
                       </div>
 
-                      <div class="contentcard" name="FaturamentoPix">
+                      <div class="contentcard row-cols-2" name="FaturamentoPix">
                         <label for="input">Faturamento Pix: </label>
                         <input
                           contenteditable="true"
@@ -115,7 +115,7 @@
                         />
                       </div>
 
-                      <div class="contentcard" name="FaturamentoCedula">
+                      <div class="contentcard row-cols-2" name="FaturamentoCedula">
                         <label for="input">Faturamento Cedula: </label>
                         <input
                           contenteditable="true"
@@ -124,7 +124,7 @@
                         />
                       </div>
 
-                      <div class="contentcard" name="id">
+                      <div class="contentcard row-cols-2 d-none" name="id">
                         <label for="input">ID: </label>
                         <input disabled="true" [(ngModel)]="dadosEditado.id" />
                       </div>
@@ -135,13 +135,14 @@
                         type="button"
                         class="btn btn-secondary"
                         data-bs-dismiss="modal"
+                        (click)="alteraHover()"
                       >
                         Fechar
                       </button>
                       <button
                         type="button"
                         class="btn btn-primary"
-                        (click)="atualizarItem(dadosEditado.id)"
+                        (click)="atualizarItem(dadosEditado.id); alteraHover()"
                       >
                         Salvar
                       </button>
