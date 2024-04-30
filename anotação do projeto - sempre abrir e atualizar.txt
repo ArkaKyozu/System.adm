@@ -111,5 +111,14 @@ no componente Pessoal.
 29/04
 
 -criar função para tornar os inputs editaveis === Resolvido
--criar função para deletar dados === em andamento
+-criar função para deletar dados para Funcionarios=== em andamento
 -melhorar designer de edição do financeiro e produto
+
+30/04
+
+-criar função para deletar dados para Funcionarios=== em andamento
+-melhorar designer de edição do financeiro e produto === Resolvido
+- Resolvi não criar a função para deletar um cargo no momento, mas pretendo implementar no futuro
+- verificar o tipo de dados para cadastrar documentos CPF / RG / PISPASEP
+- falta arrumar o designer do menu lateral 
+- criação do deashBoard 

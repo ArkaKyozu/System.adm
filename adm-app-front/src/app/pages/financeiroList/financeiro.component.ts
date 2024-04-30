@@ -10,8 +10,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { ConfigService } from '../service/config.service';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { response } from 'express';
-import { error } from 'console';
+
 
 
 @Component({
@@ -58,17 +57,29 @@ export class FinanceiroComponent implements OnInit {
   }
 
   dadosEditado: any = {};
+  classTess:boolean = true
 
   exibirItemId(id: number) {
     this.ConfigService.exibirFinanceiro(id).subscribe(
       (response) => {
         console.log('exibindo', response);
         this.dadosEditado = response;
+        if(this.classTess === true){
+          this.classTess = false
+        }
       },
       (error) => {
         console.error('erro ao exibir Dados', error);
       }
     );
+  }
+
+  alteraHover(){
+    if(this.classTess === false){
+     setTimeout(() =>{
+      this.classTess = true
+     }, 500)
+    }
   }
 
   atualizarItem(id: number){

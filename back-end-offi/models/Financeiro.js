@@ -16,22 +16,22 @@ const Financeiro = sequelize.define('Financeiro', {
     },
 
     GastoDiario: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.DECIMAL(10,2),
         allowNull: true, 
     },
 
     FaturamentoCard:{
-        type:DataTypes.DECIMAL,
+        type:DataTypes.DECIMAL(10,2),
         allowNull:false,
     },
 
     FaturamentoPix: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.DECIMAL(10,2),
         allowNull: false,
     },
 
     FaturamentoCedula: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.DECIMAL(10,2),
         allowNull: false
     }
 },{underscored: true});

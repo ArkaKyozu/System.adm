@@ -1,25 +1,83 @@
-*{
+* {
   margin-top: 3rem;
 }
 
-.table{
+.table {
   height: 75%;
   width: 75%;
+  vertical-align: baseline;
 }
 
-.lista{
+.lista {
   text-align: -webkit-center;
 }
 
-h1{
+h1 {
   color: blue;
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 50PX;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 50px;
   text-align: center;
   text-decoration: solid;
 }
 
-caption{
+caption {
   opacity: 20%;
   text-align: right;
+}
+
+.content {
+  text-align: center;
+  vertical-align: baseline;
+  border-color: blue;
+
+}
+
+.linha:hover {
+  transform: scale(1.2);
+  border-radius: 1rem;
+}
+
+.linha{
+  transition: transform .5s
+}
+
+.head {
+  text-align: center;
+}
+
+.btn {
+  margin: 1rem;
+}
+
+.modal-dialog {
+  padding: 0;
+  background-color: aqua;
+}
+.modal-body {
+  padding: 0px;
+  height: 36rem;
+  margin-top: 0rem;
+  width: max-content;
+  margin-left: 5rem;
+}
+
+.modal-header{
+  padding: 1rem;
+  margin: initial;
+  background-color: teal;
+}
+
+.modal-title{
+  font-size: x-large;
+  margin-left: 7rem;
+  padding: 0.5rem;
+  color: aliceblue;
+}
+
+.contentcard{
+  margin-top: 1rem;
+}
+
+.row-cols-2>*{
+  text-align: center;
 }

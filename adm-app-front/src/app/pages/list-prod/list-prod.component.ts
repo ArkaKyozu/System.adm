@@ -47,6 +47,7 @@ export class ListProdComponent implements OnInit {
   }
 
   dadosEditados: any = '';
+  classTess: boolean = true
 
   atualizarItem(id: number){
     this.ConfigService.atualizarDados(id, this.dadosEditados).subscribe(
@@ -67,10 +68,20 @@ export class ListProdComponent implements OnInit {
       (response) => {
         console.log('Exibindo', response);
         this.dadosEditados = response;
+        if(this.classTess === true){
+          this.classTess = false
+        }
       },
       (error) => {
         console.error('Erro ao exibir os dados', error);
       }
     );
+  }
+  alteraHover(){
+    if(this.classTess === false){
+     setTimeout(() =>{
+      this.classTess = true
+     }, 500)
+    }
   }
 }

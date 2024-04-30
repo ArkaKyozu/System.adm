@@ -5,6 +5,7 @@
 .table{
   height: 75%;
   width: 75%;
+  vertical-align: baseline;
 }
 
 .lista{
@@ -22,4 +23,62 @@ h1{
 caption{
   opacity: 20%;
   text-align: right;
+}
+
+.head {
+  text-align: center;
+}
+
+.content {
+  text-align: center;
+  vertical-align: baseline;
+  border-color: blue;
+}
+
+.linha:hover {
+  transform: scale(1.2);
+  border-radius: 1rem;
+  text-decoration-line: underline;
+}
+
+.linha{
+  transition: transform .5s
+}
+
+.btn{
+  margin: 1rem;
+}
+
+.modal-dialog {
+  padding: 0;
+  background-color: aqua;
+}
+
+.modal-body {
+  padding: 0px;
+  height: 36rem;
+  margin-top: 0rem;
+  width: max-content;
+  margin-left: 5rem;
+}
+
+.modal-header{
+  padding: 1rem;
+  margin: initial;
+  background-color: teal;
+}
+
+.modal-title{
+  font-size: x-large;
+  margin-left: 7rem;
+  padding: 0.5rem;
+  color: aliceblue;
+}
+
+.contentcard{
+  margin-top: 1rem;
+}
+
+.row-cols-2>*{
+  text-align: center;
 }

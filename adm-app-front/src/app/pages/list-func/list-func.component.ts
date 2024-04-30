@@ -5,6 +5,7 @@ import { ConfigService } from '../service/config.service';
 import { FormsModule } from '@angular/forms';
 
 
+
 @Component({
   selector: 'app-list-func',
   standalone: true,
@@ -103,6 +104,17 @@ export class ListFuncComponent implements OnInit {
       },
       (error) => {
         console.log('Não foi possivel atualizar os dados', error);
+      }
+    )
+  }
+
+  deletarPessoal(id:number){
+    this.ConfigService.deletarPessoal(id).subscribe(
+      () => {
+        console.log('Profissional excluido com sucesso!');
+      },
+      (error) => {
+        console.log('Erro ao apagar item', error);
       }
     )
   }

@@ -9,7 +9,7 @@
         Tabela com a listagem de produtos
       </caption>
 
-      <thead>
+      <thead class="head">
         <tr>
           <th class="d-lg-none">id</th>
           <th>Data</th>
@@ -22,12 +22,12 @@
         </tr>
       </thead>
 
-      <tbody>
-        <tr *ngFor="let item of dadosApi">
+      <tbody class="content">
+        <tr [ngClass]="{linha: classTess, nlinha: !classTess }"  *ngFor="let item of dadosApi">
           <td class="d-lg-none">{{ item.id }}</td>
           <td>{{ item.data }}</td>
           <td id="nome">{{ item.NomeProduto }}</td>
-          <td>{{ item.Valor }}</td>
+          <td><span matTextPrefix>R$&nbsp;</span> {{ item.Valor }}</td>
           <td>{{ item.Quantidade }}</td>
           <td>{{ item.Fornecedor }}</td>
           <td>{{ item.Observacao }}</td>
@@ -76,48 +76,49 @@
                       </h5>
                       <button
                         type="button"
-                        class="btn-close"
+                        class="btn-close bg-danger"
                         data-bs-dismiss="modal"
                         aria-label="Close"
+                        (click)="alteraHover()"
                       ></button>
 
                     </div>
 
                     <div class="modal-body">
 
-                      <div class="contentcard" name="data">
+                      <div class="contentcard row-cols-2" name="data">
                         <label for="input">Data: </label>
                           <input contenteditable="true" [(ngModel)]="dadosEditados.data"/>
                       </div>
 
-                      <div class="contentcard" name="NomeProduto">
+                      <div class="contentcard row-cols-2" name="NomeProduto">
                         <label for="input">Nome do Produto: </label>
                           <input contenteditable="true"
                           [(ngModel)]="dadosEditados.NomeProduto"/>
                       </div>
 
-                      <div class="contentcard" name="Valor">
+                      <div class="contentcard row-cols-2" name="Valor">
                         <label for="input">Valor: </label>
                           <input contenteditable="true" [(ngModel)]="dadosEditados.Valor"/>
                       </div>
 
-                      <div class="contentcard" name="Quantidade">
+                      <div class="contentcard row-cols-2" name="Quantidade">
                         <label for="input">Quantidade: </label>
                           <input contenteditable="true" [(ngModel)]="dadosEditados.Quantidade"/>
                       </div>
 
-                      <div class="contentcard" name="Fornecedor">
+                      <div class="contentcard row-cols-2" name="Fornecedor">
                         <label for="input">Fornecedor: </label>
                           <input contenteditable="true" [(ngModel)]="dadosEditados.Fornecedor"/>
                       </div>
 
-                      <div class="contentcard" name="Observacao">
+                      <div class="contentcard row-cols-2" name="Observacao">
                         <label for="input">Observação: </label>
                           <input contenteditable="true" [(ngModel)]="dadosEditados.Observacao"/>
                       </div>
 
 
-                      <div class="contentcard" name="id">
+                      <div class="contentcard row-cols-2 d-none" name="id">
                         <label for="input">ID: </label>
                           <input disabled="true" [(ngModel)]="dadosEditados.id"/>
                       </div>
@@ -128,10 +129,11 @@
                         type="button"
                         class="btn btn-secondary"
                         data-bs-dismiss="modal"
+                        (click)="alteraHover()"
                       >
                         Fechar
                       </button>
-                      <button type="button" class="btn btn-primary" (click)="atualizarItem(dadosEditados.id)">
+                      <button type="button" class="btn btn-primary" (click)="atualizarItem(dadosEditados.id); alteraHover()">
                         Salvar
                       </button>
                     </div>
