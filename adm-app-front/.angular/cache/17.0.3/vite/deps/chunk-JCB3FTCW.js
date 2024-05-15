@@ -101,13 +101,15 @@ var Platform = _Platform;
     args: [{
       providedIn: "root"
     }]
-  }], () => [{
-    type: Object,
-    decorators: [{
-      type: Inject,
-      args: [PLATFORM_ID]
-    }]
-  }], null);
+  }], function() {
+    return [{
+      type: Object,
+      decorators: [{
+        type: Inject,
+        args: [PLATFORM_ID]
+      }]
+    }];
+  }, null);
 })();
 var _PlatformModule = class _PlatformModule {
 };
@@ -333,17 +335,19 @@ var MediaMatcher = _MediaMatcher;
     args: [{
       providedIn: "root"
     }]
-  }], () => [{
-    type: Platform
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Optional
+  }], function() {
+    return [{
+      type: Platform
     }, {
-      type: Inject,
-      args: [CSP_NONCE]
-    }]
-  }], null);
+      type: void 0,
+      decorators: [{
+        type: Optional
+      }, {
+        type: Inject,
+        args: [CSP_NONCE]
+      }]
+    }];
+  }, null);
 })();
 function createEmptyStyleRule(query, nonce) {
   if (mediaQueriesForWebkitCompatibility.has(query)) {
@@ -464,11 +468,13 @@ var BreakpointObserver = _BreakpointObserver;
     args: [{
       providedIn: "root"
     }]
-  }], () => [{
-    type: MediaMatcher
-  }, {
-    type: NgZone
-  }], null);
+  }], function() {
+    return [{
+      type: MediaMatcher
+    }, {
+      type: NgZone
+    }];
+  }, null);
 })();
 function splitQueries(queries) {
   return queries.map((query) => query.split(",")).reduce((a1, a2) => a1.concat(a2)).map((query) => query.trim());
@@ -512,4 +518,4 @@ export {
   BreakpointObserver,
   Breakpoints
 };
-//# sourceMappingURL=chunk-D2UX4FE4.js.map
+//# sourceMappingURL=chunk-JCB3FTCW.js.map

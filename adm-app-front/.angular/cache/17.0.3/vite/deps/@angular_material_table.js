@@ -6,18 +6,18 @@ import {
   _RecycleViewRepeaterStrategy,
   _VIEW_REPEATER_STRATEGY,
   isDataSource
-} from "./chunk-FII4JONU.js";
+} from "./chunk-VURNEMVW.js";
 import {
   Directionality,
   MatCommonModule
-} from "./chunk-P3BMRCS6.js";
+} from "./chunk-VSFOEEXK.js";
 import "./chunk-7ZAUYQKU.js";
 import "./chunk-4MCH5DBJ.js";
 import {
   Platform,
   _isNumberValue,
   coerceBooleanProperty
-} from "./chunk-D2UX4FE4.js";
+} from "./chunk-JCB3FTCW.js";
 import "./chunk-I3YR3BDD.js";
 import {
   DOCUMENT
@@ -46,12 +46,10 @@ import {
   ViewChild,
   ViewContainerRef,
   ViewEncapsulation$1,
-  booleanAttribute,
   isObservable,
   merge,
   setClassMetadata,
   ɵɵInheritDefinitionFeature,
-  ɵɵInputTransformsFeature,
   ɵɵNgOnChangesFeature,
   ɵɵProvidersFeature,
   ɵɵadvance,
@@ -172,9 +170,11 @@ var CdkCellDef = _CdkCellDef;
     args: [{
       selector: "[cdkCellDef]"
     }]
-  }], () => [{
-    type: TemplateRef
-  }], null);
+  }], function() {
+    return [{
+      type: TemplateRef
+    }];
+  }, null);
 })();
 var _CdkHeaderCellDef = class _CdkHeaderCellDef {
   constructor(template) {
@@ -195,9 +195,11 @@ var CdkHeaderCellDef = _CdkHeaderCellDef;
     args: [{
       selector: "[cdkHeaderCellDef]"
     }]
-  }], () => [{
-    type: TemplateRef
-  }], null);
+  }], function() {
+    return [{
+      type: TemplateRef
+    }];
+  }, null);
 })();
 var _CdkFooterCellDef = class _CdkFooterCellDef {
   constructor(template) {
@@ -218,9 +220,11 @@ var CdkFooterCellDef = _CdkFooterCellDef;
     args: [{
       selector: "[cdkFooterCellDef]"
     }]
-  }], () => [{
-    type: TemplateRef
-  }], null);
+  }], function() {
+    return [{
+      type: TemplateRef
+    }];
+  }, null);
 })();
 var CdkColumnDefBase = class {
 };
@@ -241,11 +245,10 @@ var _CdkColumnDef = class _CdkColumnDef extends _CdkColumnDefBase {
   get stickyEnd() {
     return this._stickyEnd;
   }
-  set stickyEnd(value) {
-    if (value !== this._stickyEnd) {
-      this._stickyEnd = value;
-      this._hasStickyChanged = true;
-    }
+  set stickyEnd(v) {
+    const prevValue = this._stickyEnd;
+    this._stickyEnd = coerceBooleanProperty(v);
+    this._hasStickyChanged = prevValue !== this._stickyEnd;
   }
   constructor(_table) {
     super();
@@ -298,12 +301,12 @@ _CdkColumnDef.ɵdir = ɵɵdefineDirective({
   inputs: {
     sticky: "sticky",
     name: ["cdkColumnDef", "name"],
-    stickyEnd: ["stickyEnd", "stickyEnd", booleanAttribute]
+    stickyEnd: "stickyEnd"
   },
   features: [ɵɵProvidersFeature([{
     provide: "MAT_SORT_HEADER_COLUMN_DEF",
     useExisting: _CdkColumnDef
-  }]), ɵɵInputTransformsFeature, ɵɵInheritDefinitionFeature]
+  }]), ɵɵInheritDefinitionFeature]
 });
 var CdkColumnDef = _CdkColumnDef;
 (() => {
@@ -317,24 +320,24 @@ var CdkColumnDef = _CdkColumnDef;
         useExisting: CdkColumnDef
       }]
     }]
-  }], () => [{
-    type: void 0,
-    decorators: [{
-      type: Inject,
-      args: [CDK_TABLE]
-    }, {
-      type: Optional
-    }]
-  }], {
+  }], function() {
+    return [{
+      type: void 0,
+      decorators: [{
+        type: Inject,
+        args: [CDK_TABLE]
+      }, {
+        type: Optional
+      }]
+    }];
+  }, {
     name: [{
       type: Input,
       args: ["cdkColumnDef"]
     }],
     stickyEnd: [{
       type: Input,
-      args: [{
-        transform: booleanAttribute
-      }]
+      args: ["stickyEnd"]
     }],
     cell: [{
       type: ContentChild,
@@ -380,11 +383,13 @@ var CdkHeaderCell = _CdkHeaderCell;
         "role": "columnheader"
       }
     }]
-  }], () => [{
-    type: CdkColumnDef
-  }, {
-    type: ElementRef
-  }], null);
+  }], function() {
+    return [{
+      type: CdkColumnDef
+    }, {
+      type: ElementRef
+    }];
+  }, null);
 })();
 var _CdkFooterCell = class _CdkFooterCell extends BaseCdkCell {
   constructor(columnDef, elementRef) {
@@ -415,11 +420,13 @@ var CdkFooterCell = _CdkFooterCell;
         "class": "cdk-footer-cell"
       }
     }]
-  }], () => [{
-    type: CdkColumnDef
-  }, {
-    type: ElementRef
-  }], null);
+  }], function() {
+    return [{
+      type: CdkColumnDef
+    }, {
+      type: ElementRef
+    }];
+  }, null);
 })();
 var _CdkCell = class _CdkCell extends BaseCdkCell {
   constructor(columnDef, elementRef) {
@@ -450,11 +457,13 @@ var CdkCell = _CdkCell;
         "class": "cdk-cell"
       }
     }]
-  }], () => [{
-    type: CdkColumnDef
-  }, {
-    type: ElementRef
-  }], null);
+  }], function() {
+    return [{
+      type: CdkColumnDef
+    }, {
+      type: ElementRef
+    }];
+  }, null);
 })();
 var _Schedule = class {
   constructor() {
@@ -523,9 +532,11 @@ var _CoalescedStyleScheduler = __CoalescedStyleScheduler;
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(_CoalescedStyleScheduler, [{
     type: Injectable
-  }], () => [{
-    type: NgZone
-  }], null);
+  }], function() {
+    return [{
+      type: NgZone
+    }];
+  }, null);
 })();
 var CDK_ROW_TEMPLATE = `<ng-container cdkCellOutlet></ng-container>`;
 var _BaseRowDef = class _BaseRowDef {
@@ -570,11 +581,13 @@ var BaseRowDef = _BaseRowDef;
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(BaseRowDef, [{
     type: Directive
-  }], () => [{
-    type: TemplateRef
-  }, {
-    type: IterableDiffers
-  }], null);
+  }], function() {
+    return [{
+      type: TemplateRef
+    }, {
+      type: IterableDiffers
+    }];
+  }, null);
 })();
 var CdkHeaderRowDefBase = class extends BaseRowDef {
 };
@@ -610,19 +623,21 @@ var CdkHeaderRowDef = _CdkHeaderRowDef;
       selector: "[cdkHeaderRowDef]",
       inputs: ["columns: cdkHeaderRowDef", "sticky: cdkHeaderRowDefSticky"]
     }]
-  }], () => [{
-    type: TemplateRef
-  }, {
-    type: IterableDiffers
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Inject,
-      args: [CDK_TABLE]
+  }], function() {
+    return [{
+      type: TemplateRef
     }, {
-      type: Optional
-    }]
-  }], null);
+      type: IterableDiffers
+    }, {
+      type: void 0,
+      decorators: [{
+        type: Inject,
+        args: [CDK_TABLE]
+      }, {
+        type: Optional
+      }]
+    }];
+  }, null);
 })();
 var CdkFooterRowDefBase = class extends BaseRowDef {
 };
@@ -658,19 +673,21 @@ var CdkFooterRowDef = _CdkFooterRowDef;
       selector: "[cdkFooterRowDef]",
       inputs: ["columns: cdkFooterRowDef", "sticky: cdkFooterRowDefSticky"]
     }]
-  }], () => [{
-    type: TemplateRef
-  }, {
-    type: IterableDiffers
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Inject,
-      args: [CDK_TABLE]
+  }], function() {
+    return [{
+      type: TemplateRef
     }, {
-      type: Optional
-    }]
-  }], null);
+      type: IterableDiffers
+    }, {
+      type: void 0,
+      decorators: [{
+        type: Inject,
+        args: [CDK_TABLE]
+      }, {
+        type: Optional
+      }]
+    }];
+  }, null);
 })();
 var _CdkRowDef = class _CdkRowDef extends BaseRowDef {
   // TODO(andrewseguin): Add an input for providing a switch function to determine
@@ -700,19 +717,21 @@ var CdkRowDef = _CdkRowDef;
       selector: "[cdkRowDef]",
       inputs: ["columns: cdkRowDefColumns", "when: cdkRowDefWhen"]
     }]
-  }], () => [{
-    type: TemplateRef
-  }, {
-    type: IterableDiffers
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Inject,
-      args: [CDK_TABLE]
+  }], function() {
+    return [{
+      type: TemplateRef
     }, {
-      type: Optional
-    }]
-  }], null);
+      type: IterableDiffers
+    }, {
+      type: void 0,
+      decorators: [{
+        type: Inject,
+        args: [CDK_TABLE]
+      }, {
+        type: Optional
+      }]
+    }];
+  }, null);
 })();
 var _CdkCellOutlet = class _CdkCellOutlet {
   constructor(_viewContainer) {
@@ -740,9 +759,11 @@ var CdkCellOutlet = _CdkCellOutlet;
     args: [{
       selector: "[cdkCellOutlet]"
     }]
-  }], () => [{
-    type: ViewContainerRef
-  }], null);
+  }], function() {
+    return [{
+      type: ViewContainerRef
+    }];
+  }, null);
 })();
 var _CdkHeaderRow = class _CdkHeaderRow {
 };
@@ -878,9 +899,11 @@ var CdkNoDataRow = _CdkNoDataRow;
     args: [{
       selector: "ng-template[cdkNoDataRow]"
     }]
-  }], () => [{
-    type: TemplateRef
-  }], null);
+  }], function() {
+    return [{
+      type: TemplateRef
+    }];
+  }, null);
 })();
 var STICKY_DIRECTIONS = ["top", "bottom", "left", "right"];
 var StickyStyler = class {
@@ -1250,11 +1273,13 @@ var DataRowOutlet = _DataRowOutlet;
     args: [{
       selector: "[rowOutlet]"
     }]
-  }], () => [{
-    type: ViewContainerRef
-  }, {
-    type: ElementRef
-  }], null);
+  }], function() {
+    return [{
+      type: ViewContainerRef
+    }, {
+      type: ElementRef
+    }];
+  }, null);
 })();
 var _HeaderRowOutlet = class _HeaderRowOutlet {
   constructor(viewContainer, elementRef) {
@@ -1276,11 +1301,13 @@ var HeaderRowOutlet = _HeaderRowOutlet;
     args: [{
       selector: "[headerRowOutlet]"
     }]
-  }], () => [{
-    type: ViewContainerRef
-  }, {
-    type: ElementRef
-  }], null);
+  }], function() {
+    return [{
+      type: ViewContainerRef
+    }, {
+      type: ElementRef
+    }];
+  }, null);
 })();
 var _FooterRowOutlet = class _FooterRowOutlet {
   constructor(viewContainer, elementRef) {
@@ -1302,11 +1329,13 @@ var FooterRowOutlet = _FooterRowOutlet;
     args: [{
       selector: "[footerRowOutlet]"
     }]
-  }], () => [{
-    type: ViewContainerRef
-  }, {
-    type: ElementRef
-  }], null);
+  }], function() {
+    return [{
+      type: ViewContainerRef
+    }, {
+      type: ElementRef
+    }];
+  }, null);
 })();
 var _NoDataRowOutlet = class _NoDataRowOutlet {
   constructor(viewContainer, elementRef) {
@@ -1328,11 +1357,13 @@ var NoDataRowOutlet = _NoDataRowOutlet;
     args: [{
       selector: "[noDataRowOutlet]"
     }]
-  }], () => [{
-    type: ViewContainerRef
-  }, {
-    type: ElementRef
-  }], null);
+  }], function() {
+    return [{
+      type: ViewContainerRef
+    }, {
+      type: ElementRef
+    }];
+  }, null);
 })();
 var CDK_TABLE_TEMPLATE = (
   // Note that according to MDN, the `caption` element has to be projected as the **first**
@@ -1399,8 +1430,8 @@ var _CdkTable = class _CdkTable {
   get multiTemplateDataRows() {
     return this._multiTemplateDataRows;
   }
-  set multiTemplateDataRows(value) {
-    this._multiTemplateDataRows = value;
+  set multiTemplateDataRows(v) {
+    this._multiTemplateDataRows = coerceBooleanProperty(v);
     if (this._rowOutlet && this._rowOutlet.viewContainer.length) {
       this._forceRenderDataRows();
       this.updateStickyColumnStyles();
@@ -1413,8 +1444,8 @@ var _CdkTable = class _CdkTable {
   get fixedLayout() {
     return this._fixedLayout;
   }
-  set fixedLayout(value) {
-    this._fixedLayout = value;
+  set fixedLayout(v) {
+    this._fixedLayout = coerceBooleanProperty(v);
     this._forceRecalculateCellWidths = true;
     this._stickyColumnStylesNeedReset = true;
   }
@@ -2067,8 +2098,8 @@ _CdkTable.ɵcmp = ɵɵdefineComponent({
   inputs: {
     trackBy: "trackBy",
     dataSource: "dataSource",
-    multiTemplateDataRows: ["multiTemplateDataRows", "multiTemplateDataRows", booleanAttribute],
-    fixedLayout: ["fixedLayout", "fixedLayout", booleanAttribute]
+    multiTemplateDataRows: "multiTemplateDataRows",
+    fixedLayout: "fixedLayout"
   },
   outputs: {
     contentChanged: "contentChanged"
@@ -2092,7 +2123,7 @@ _CdkTable.ɵcmp = ɵɵdefineComponent({
       provide: STICKY_POSITIONING_LISTENER,
       useValue: null
     }
-  ]), ɵɵInputTransformsFeature],
+  ])],
   ngContentSelectors: _c1,
   decls: 6,
   vars: 0,
@@ -2145,61 +2176,63 @@ var CdkTable = _CdkTable;
       ],
       styles: [".cdk-table-fixed-layout{table-layout:fixed}"]
     }]
-  }], () => [{
-    type: IterableDiffers
-  }, {
-    type: ChangeDetectorRef
-  }, {
-    type: ElementRef
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Attribute,
-      args: ["role"]
-    }]
-  }, {
-    type: Directionality,
-    decorators: [{
-      type: Optional
-    }]
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Inject,
-      args: [DOCUMENT]
-    }]
-  }, {
-    type: Platform
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Inject,
-      args: [_VIEW_REPEATER_STRATEGY]
-    }]
-  }, {
-    type: _CoalescedStyleScheduler,
-    decorators: [{
-      type: Inject,
-      args: [_COALESCED_STYLE_SCHEDULER]
-    }]
-  }, {
-    type: ViewportRuler
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Optional
+  }], function() {
+    return [{
+      type: IterableDiffers
     }, {
-      type: SkipSelf
+      type: ChangeDetectorRef
     }, {
-      type: Inject,
-      args: [STICKY_POSITIONING_LISTENER]
-    }]
+      type: ElementRef
+    }, {
+      type: void 0,
+      decorators: [{
+        type: Attribute,
+        args: ["role"]
+      }]
+    }, {
+      type: Directionality,
+      decorators: [{
+        type: Optional
+      }]
+    }, {
+      type: void 0,
+      decorators: [{
+        type: Inject,
+        args: [DOCUMENT]
+      }]
+    }, {
+      type: Platform
+    }, {
+      type: void 0,
+      decorators: [{
+        type: Inject,
+        args: [_VIEW_REPEATER_STRATEGY]
+      }]
+    }, {
+      type: _CoalescedStyleScheduler,
+      decorators: [{
+        type: Inject,
+        args: [_COALESCED_STYLE_SCHEDULER]
+      }]
+    }, {
+      type: ViewportRuler
+    }, {
+      type: void 0,
+      decorators: [{
+        type: Optional
+      }, {
+        type: SkipSelf
+      }, {
+        type: Inject,
+        args: [STICKY_POSITIONING_LISTENER]
+      }]
+    }, {
+      type: NgZone,
+      decorators: [{
+        type: Optional
+      }]
+    }];
   }, {
-    type: NgZone,
-    decorators: [{
-      type: Optional
-    }]
-  }], {
     trackBy: [{
       type: Input
     }],
@@ -2207,16 +2240,10 @@ var CdkTable = _CdkTable;
       type: Input
     }],
     multiTemplateDataRows: [{
-      type: Input,
-      args: [{
-        transform: booleanAttribute
-      }]
+      type: Input
     }],
     fixedLayout: [{
-      type: Input,
-      args: [{
-        transform: booleanAttribute
-      }]
+      type: Input
     }],
     contentChanged: [{
       type: Output
@@ -2398,20 +2425,22 @@ var CdkTextColumn = _CdkTextColumn;
       // tslint:disable-next-line:validate-decorators
       changeDetection: ChangeDetectionStrategy.Default
     }]
-  }], () => [{
-    type: CdkTable,
-    decorators: [{
-      type: Optional
-    }]
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Optional
+  }], function() {
+    return [{
+      type: CdkTable,
+      decorators: [{
+        type: Optional
+      }]
     }, {
-      type: Inject,
-      args: [TEXT_COLUMN_OPTIONS]
-    }]
-  }], {
+      type: void 0,
+      decorators: [{
+        type: Optional
+      }, {
+        type: Inject,
+        args: [TEXT_COLUMN_OPTIONS]
+      }]
+    }];
+  }, {
     name: [{
       type: Input
     }],

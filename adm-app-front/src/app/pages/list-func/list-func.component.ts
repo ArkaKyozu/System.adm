@@ -112,6 +112,7 @@ export class ListFuncComponent implements OnInit {
     this.ConfigService.deletarPessoal(id).subscribe(
       () => {
         console.log('Profissional excluido com sucesso!');
+        window.location.reload()
       },
       (error) => {
         console.log('Erro ao apagar item', error);

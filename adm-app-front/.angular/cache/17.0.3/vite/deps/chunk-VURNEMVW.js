@@ -1,14 +1,15 @@
 import {
   BidiModule,
   Directionality
-} from "./chunk-P3BMRCS6.js";
+} from "./chunk-VSFOEEXK.js";
 import {
   Platform,
+  coerceBooleanProperty,
   coerceElement,
   coerceNumberProperty,
   getRtlScrollAxisType,
   supportsScrollBehavior
-} from "./chunk-D2UX4FE4.js";
+} from "./chunk-JCB3FTCW.js";
 import {
   DOCUMENT
 } from "./chunk-JPJ6VI5J.js";
@@ -34,14 +35,12 @@ import {
   ViewEncapsulation$1,
   animationFrameScheduler,
   asapScheduler,
-  booleanAttribute,
   forwardRef,
   fromEvent,
   inject,
   isObservable,
   setClassMetadata,
   ɵɵInheritDefinitionFeature,
-  ɵɵInputTransformsFeature,
   ɵɵNgOnChangesFeature,
   ɵɵProvidersFeature,
   ɵɵStandaloneFeature,
@@ -798,19 +797,21 @@ var ScrollDispatcher = _ScrollDispatcher;
     args: [{
       providedIn: "root"
     }]
-  }], () => [{
-    type: NgZone
-  }, {
-    type: Platform
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Optional
+  }], function() {
+    return [{
+      type: NgZone
     }, {
-      type: Inject,
-      args: [DOCUMENT]
-    }]
-  }], null);
+      type: Platform
+    }, {
+      type: void 0,
+      decorators: [{
+        type: Optional
+      }, {
+        type: Inject,
+        args: [DOCUMENT]
+      }]
+    }];
+  }, null);
 })();
 var _CdkScrollable = class _CdkScrollable {
   constructor(elementRef, scrollDispatcher, ngZone, dir) {
@@ -948,18 +949,20 @@ var CdkScrollable = _CdkScrollable;
       selector: "[cdk-scrollable], [cdkScrollable]",
       standalone: true
     }]
-  }], () => [{
-    type: ElementRef
-  }, {
-    type: ScrollDispatcher
-  }, {
-    type: NgZone
-  }, {
-    type: Directionality,
-    decorators: [{
-      type: Optional
-    }]
-  }], null);
+  }], function() {
+    return [{
+      type: ElementRef
+    }, {
+      type: ScrollDispatcher
+    }, {
+      type: NgZone
+    }, {
+      type: Directionality,
+      decorators: [{
+        type: Optional
+      }]
+    }];
+  }, null);
 })();
 var DEFAULT_RESIZE_TIME = 20;
 var _ViewportRuler = class _ViewportRuler {
@@ -1075,19 +1078,21 @@ var ViewportRuler = _ViewportRuler;
     args: [{
       providedIn: "root"
     }]
-  }], () => [{
-    type: Platform
-  }, {
-    type: NgZone
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Optional
+  }], function() {
+    return [{
+      type: Platform
     }, {
-      type: Inject,
-      args: [DOCUMENT]
-    }]
-  }], null);
+      type: NgZone
+    }, {
+      type: void 0,
+      decorators: [{
+        type: Optional
+      }, {
+        type: Inject,
+        args: [DOCUMENT]
+      }]
+    }];
+  }, null);
 })();
 var VIRTUAL_SCROLLABLE = new InjectionToken("VIRTUAL_SCROLLABLE");
 var _CdkVirtualScrollable = class _CdkVirtualScrollable extends CdkScrollable {
@@ -1115,18 +1120,20 @@ var CdkVirtualScrollable = _CdkVirtualScrollable;
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(CdkVirtualScrollable, [{
     type: Directive
-  }], () => [{
-    type: ElementRef
-  }, {
-    type: ScrollDispatcher
-  }, {
-    type: NgZone
-  }, {
-    type: Directionality,
-    decorators: [{
-      type: Optional
-    }]
-  }], null);
+  }], function() {
+    return [{
+      type: ElementRef
+    }, {
+      type: ScrollDispatcher
+    }, {
+      type: NgZone
+    }, {
+      type: Directionality,
+      decorators: [{
+        type: Optional
+      }]
+    }];
+  }, null);
 })();
 function rangesEqual(r1, r2) {
   return r1.start == r2.start && r1.end == r2.end;
@@ -1143,6 +1150,16 @@ var _CdkVirtualScrollViewport = class _CdkVirtualScrollViewport extends CdkVirtu
       this._calculateSpacerSize();
     }
   }
+  /**
+   * Whether rendered items should persist in the DOM after scrolling out of view. By default, items
+   * will be removed.
+   */
+  get appendOnly() {
+    return this._appendOnly;
+  }
+  set appendOnly(value) {
+    this._appendOnly = coerceBooleanProperty(value);
+  }
   constructor(elementRef, _changeDetectorRef, ngZone, _scrollStrategy, dir, scrollDispatcher, viewportRuler, scrollable) {
     super(elementRef, scrollDispatcher, ngZone, dir);
     this.elementRef = elementRef;
@@ -1153,7 +1170,7 @@ var _CdkVirtualScrollViewport = class _CdkVirtualScrollViewport extends CdkVirtu
     this._detachedSubject = new Subject();
     this._renderedRangeSubject = new Subject();
     this._orientation = "vertical";
-    this.appendOnly = false;
+    this._appendOnly = false;
     this.scrolledIndexChange = new Observable((observer) => this._scrollStrategy.scrolledIndexChange.subscribe((index) => Promise.resolve().then(() => this.ngZone.run(() => observer.next(index)))));
     this.renderedRangeStream = this._renderedRangeSubject;
     this._totalContentSize = 0;
@@ -1453,7 +1470,7 @@ _CdkVirtualScrollViewport.ɵcmp = ɵɵdefineComponent({
   },
   inputs: {
     orientation: "orientation",
-    appendOnly: ["appendOnly", "appendOnly", booleanAttribute]
+    appendOnly: "appendOnly"
   },
   outputs: {
     scrolledIndexChange: "scrolledIndexChange"
@@ -1463,7 +1480,7 @@ _CdkVirtualScrollViewport.ɵcmp = ɵɵdefineComponent({
     provide: CdkScrollable,
     useFactory: (virtualScrollable, viewport) => virtualScrollable || viewport,
     deps: [[new Optional(), new Inject(VIRTUAL_SCROLLABLE)], _CdkVirtualScrollViewport]
-  }]), ɵɵInputTransformsFeature, ɵɵInheritDefinitionFeature, ɵɵStandaloneFeature],
+  }]), ɵɵInheritDefinitionFeature, ɵɵStandaloneFeature],
   ngContentSelectors: _c1,
   decls: 4,
   vars: 4,
@@ -1507,46 +1524,45 @@ var CdkVirtualScrollViewport = _CdkVirtualScrollViewport;
       template: '<!--\n  Wrap the rendered content in an element that will be used to offset it based on the scroll\n  position.\n-->\n<div #contentWrapper class="cdk-virtual-scroll-content-wrapper">\n  <ng-content></ng-content>\n</div>\n<!--\n  Spacer used to force the scrolling container to the correct size for the *total* number of items\n  so that the scrollbar captures the size of the entire data set.\n-->\n<div class="cdk-virtual-scroll-spacer"\n     [style.width]="_totalContentWidth" [style.height]="_totalContentHeight"></div>\n',
       styles: ["cdk-virtual-scroll-viewport{display:block;position:relative;transform:translateZ(0)}.cdk-virtual-scrollable{overflow:auto;will-change:scroll-position;contain:strict;-webkit-overflow-scrolling:touch}.cdk-virtual-scroll-content-wrapper{position:absolute;top:0;left:0;contain:content}[dir=rtl] .cdk-virtual-scroll-content-wrapper{right:0;left:auto}.cdk-virtual-scroll-orientation-horizontal .cdk-virtual-scroll-content-wrapper{min-height:100%}.cdk-virtual-scroll-orientation-horizontal .cdk-virtual-scroll-content-wrapper>dl:not([cdkVirtualFor]),.cdk-virtual-scroll-orientation-horizontal .cdk-virtual-scroll-content-wrapper>ol:not([cdkVirtualFor]),.cdk-virtual-scroll-orientation-horizontal .cdk-virtual-scroll-content-wrapper>table:not([cdkVirtualFor]),.cdk-virtual-scroll-orientation-horizontal .cdk-virtual-scroll-content-wrapper>ul:not([cdkVirtualFor]){padding-left:0;padding-right:0;margin-left:0;margin-right:0;border-left-width:0;border-right-width:0;outline:none}.cdk-virtual-scroll-orientation-vertical .cdk-virtual-scroll-content-wrapper{min-width:100%}.cdk-virtual-scroll-orientation-vertical .cdk-virtual-scroll-content-wrapper>dl:not([cdkVirtualFor]),.cdk-virtual-scroll-orientation-vertical .cdk-virtual-scroll-content-wrapper>ol:not([cdkVirtualFor]),.cdk-virtual-scroll-orientation-vertical .cdk-virtual-scroll-content-wrapper>table:not([cdkVirtualFor]),.cdk-virtual-scroll-orientation-vertical .cdk-virtual-scroll-content-wrapper>ul:not([cdkVirtualFor]){padding-top:0;padding-bottom:0;margin-top:0;margin-bottom:0;border-top-width:0;border-bottom-width:0;outline:none}.cdk-virtual-scroll-spacer{height:1px;transform-origin:0 0;flex:0 0 auto}[dir=rtl] .cdk-virtual-scroll-spacer{transform-origin:100% 0}"]
     }]
-  }], () => [{
-    type: ElementRef
-  }, {
-    type: ChangeDetectorRef
-  }, {
-    type: NgZone
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Optional
+  }], function() {
+    return [{
+      type: ElementRef
     }, {
-      type: Inject,
-      args: [VIRTUAL_SCROLL_STRATEGY]
-    }]
-  }, {
-    type: Directionality,
-    decorators: [{
-      type: Optional
-    }]
-  }, {
-    type: ScrollDispatcher
-  }, {
-    type: ViewportRuler
-  }, {
-    type: CdkVirtualScrollable,
-    decorators: [{
-      type: Optional
+      type: ChangeDetectorRef
     }, {
-      type: Inject,
-      args: [VIRTUAL_SCROLLABLE]
-    }]
-  }], {
+      type: NgZone
+    }, {
+      type: void 0,
+      decorators: [{
+        type: Optional
+      }, {
+        type: Inject,
+        args: [VIRTUAL_SCROLL_STRATEGY]
+      }]
+    }, {
+      type: Directionality,
+      decorators: [{
+        type: Optional
+      }]
+    }, {
+      type: ScrollDispatcher
+    }, {
+      type: ViewportRuler
+    }, {
+      type: CdkVirtualScrollable,
+      decorators: [{
+        type: Optional
+      }, {
+        type: Inject,
+        args: [VIRTUAL_SCROLLABLE]
+      }]
+    }];
+  }, {
     orientation: [{
       type: Input
     }],
     appendOnly: [{
-      type: Input,
-      args: [{
-        transform: booleanAttribute
-      }]
+      type: Input
     }],
     scrolledIndexChange: [{
       type: Output
@@ -1804,26 +1820,28 @@ var CdkVirtualForOf = _CdkVirtualForOf;
       }],
       standalone: true
     }]
-  }], () => [{
-    type: ViewContainerRef
+  }], function() {
+    return [{
+      type: ViewContainerRef
+    }, {
+      type: TemplateRef
+    }, {
+      type: IterableDiffers
+    }, {
+      type: _RecycleViewRepeaterStrategy,
+      decorators: [{
+        type: Inject,
+        args: [_VIEW_REPEATER_STRATEGY]
+      }]
+    }, {
+      type: CdkVirtualScrollViewport,
+      decorators: [{
+        type: SkipSelf
+      }]
+    }, {
+      type: NgZone
+    }];
   }, {
-    type: TemplateRef
-  }, {
-    type: IterableDiffers
-  }, {
-    type: _RecycleViewRepeaterStrategy,
-    decorators: [{
-      type: Inject,
-      args: [_VIEW_REPEATER_STRATEGY]
-    }]
-  }, {
-    type: CdkVirtualScrollViewport,
-    decorators: [{
-      type: SkipSelf
-    }]
-  }, {
-    type: NgZone
-  }], {
     cdkVirtualForOf: [{
       type: Input
     }],
@@ -1874,18 +1892,20 @@ var CdkVirtualScrollableElement = _CdkVirtualScrollableElement;
         "class": "cdk-virtual-scrollable"
       }
     }]
-  }], () => [{
-    type: ElementRef
-  }, {
-    type: ScrollDispatcher
-  }, {
-    type: NgZone
-  }, {
-    type: Directionality,
-    decorators: [{
-      type: Optional
-    }]
-  }], null);
+  }], function() {
+    return [{
+      type: ElementRef
+    }, {
+      type: ScrollDispatcher
+    }, {
+      type: NgZone
+    }, {
+      type: Directionality,
+      decorators: [{
+        type: Optional
+      }]
+    }];
+  }, null);
 })();
 var _CdkVirtualScrollableWindow = class _CdkVirtualScrollableWindow extends CdkVirtualScrollable {
   constructor(scrollDispatcher, ngZone, dir) {
@@ -1920,16 +1940,18 @@ var CdkVirtualScrollableWindow = _CdkVirtualScrollableWindow;
       }],
       standalone: true
     }]
-  }], () => [{
-    type: ScrollDispatcher
-  }, {
-    type: NgZone
-  }, {
-    type: Directionality,
-    decorators: [{
-      type: Optional
-    }]
-  }], null);
+  }], function() {
+    return [{
+      type: ScrollDispatcher
+    }, {
+      type: NgZone
+    }, {
+      type: Directionality,
+      decorators: [{
+        type: Optional
+      }]
+    }];
+  }, null);
 })();
 var _CdkScrollableModule = class _CdkScrollableModule {
 };
@@ -1988,4 +2010,4 @@ export {
   CdkScrollableModule,
   ScrollingModule
 };
-//# sourceMappingURL=chunk-FII4JONU.js.map
+//# sourceMappingURL=chunk-VURNEMVW.js.map

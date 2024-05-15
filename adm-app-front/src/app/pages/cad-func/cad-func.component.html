@@ -231,9 +231,13 @@
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="thirdFormGroup" label="Documentação" class="top">
-    <form [formGroup]="thirdFormGroup" class="firstFormGroup">
 
+  <mat-step [stepControl]="thirdFormGroup"  label="Documentação" class="top" >
+    <form [formGroup]="thirdFormGroup" class="third">
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="inputGroupFile01">Upload</label>
+        <input type="file" class="form-control" id="inputGroupFile01">
+      </div>
     </form>
   </mat-step>
 

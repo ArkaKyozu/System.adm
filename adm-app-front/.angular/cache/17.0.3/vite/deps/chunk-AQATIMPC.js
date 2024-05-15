@@ -1,20 +1,20 @@
 import {
-  MAT_FORM_FIELD,
-  MatFormField,
-  MatFormFieldControl,
-  MatFormFieldModule
-} from "./chunk-JX7ROJYR.js";
-import {
   FormGroupDirective,
   NgControl,
   NgForm,
   Validators
 } from "./chunk-Z43ZRHBW.js";
 import {
+  MAT_FORM_FIELD,
+  MatFormField,
+  MatFormFieldControl,
+  MatFormFieldModule
+} from "./chunk-D2PBAJ5K.js";
+import {
   ErrorStateMatcher,
   MatCommonModule,
   mixinErrorState
-} from "./chunk-P3BMRCS6.js";
+} from "./chunk-VSFOEEXK.js";
 import {
   Platform,
   coerceBooleanProperty,
@@ -22,7 +22,7 @@ import {
   coerceNumberProperty,
   getSupportedInputTypes,
   normalizePassiveListenerOptions
-} from "./chunk-D2UX4FE4.js";
+} from "./chunk-JCB3FTCW.js";
 import {
   DOCUMENT
 } from "./chunk-JPJ6VI5J.js";
@@ -39,11 +39,9 @@ import {
   Optional,
   Output,
   Self,
-  booleanAttribute,
   fromEvent,
   setClassMetadata,
   ɵɵInheritDefinitionFeature,
-  ɵɵInputTransformsFeature,
   ɵɵNgOnChangesFeature,
   ɵɵProvidersFeature,
   ɵɵattribute,
@@ -142,11 +140,13 @@ var AutofillMonitor = _AutofillMonitor;
     args: [{
       providedIn: "root"
     }]
-  }], () => [{
-    type: Platform
-  }, {
-    type: NgZone
-  }], null);
+  }], function() {
+    return [{
+      type: Platform
+    }, {
+      type: NgZone
+    }];
+  }, null);
 })();
 var _CdkAutofill = class _CdkAutofill {
   constructor(_elementRef, _autofillMonitor) {
@@ -178,11 +178,13 @@ var CdkAutofill = _CdkAutofill;
     args: [{
       selector: "[cdkAutofill]"
     }]
-  }], () => [{
-    type: ElementRef
+  }], function() {
+    return [{
+      type: ElementRef
+    }, {
+      type: AutofillMonitor
+    }];
   }, {
-    type: AutofillMonitor
-  }], {
     cdkAutofill: [{
       type: Output
     }]
@@ -210,6 +212,7 @@ var _CdkTextareaAutosize = class _CdkTextareaAutosize {
     return this._enabled;
   }
   set enabled(value) {
+    value = coerceBooleanProperty(value);
     if (this._enabled !== value) {
       (this._enabled = value) ? this.resizeToFitContent(true) : this.reset();
     }
@@ -419,11 +422,10 @@ _CdkTextareaAutosize.ɵdir = ɵɵdefineDirective({
   inputs: {
     minRows: ["cdkAutosizeMinRows", "minRows"],
     maxRows: ["cdkAutosizeMaxRows", "maxRows"],
-    enabled: ["cdkTextareaAutosize", "enabled", booleanAttribute],
+    enabled: ["cdkTextareaAutosize", "enabled"],
     placeholder: "placeholder"
   },
-  exportAs: ["cdkTextareaAutosize"],
-  features: [ɵɵInputTransformsFeature]
+  exportAs: ["cdkTextareaAutosize"]
 });
 var CdkTextareaAutosize = _CdkTextareaAutosize;
 (() => {
@@ -440,21 +442,23 @@ var CdkTextareaAutosize = _CdkTextareaAutosize;
         "(input)": "_noopInputHandler()"
       }
     }]
-  }], () => [{
-    type: ElementRef
-  }, {
-    type: Platform
-  }, {
-    type: NgZone
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Optional
+  }], function() {
+    return [{
+      type: ElementRef
     }, {
-      type: Inject,
-      args: [DOCUMENT]
-    }]
-  }], {
+      type: Platform
+    }, {
+      type: NgZone
+    }, {
+      type: void 0,
+      decorators: [{
+        type: Optional
+      }, {
+        type: Inject,
+        args: [DOCUMENT]
+      }]
+    }];
+  }, {
     minRows: [{
       type: Input,
       args: ["cdkAutosizeMinRows"]
@@ -465,10 +469,7 @@ var CdkTextareaAutosize = _CdkTextareaAutosize;
     }],
     enabled: [{
       type: Input,
-      args: [{
-        alias: "cdkTextareaAutosize",
-        transform: booleanAttribute
-      }]
+      args: ["cdkTextareaAutosize"]
     }],
     placeholder: [{
       type: Input
@@ -939,4 +940,4 @@ export {
   MatInput,
   MatInputModule
 };
-//# sourceMappingURL=chunk-G3LDQVO4.js.map
+//# sourceMappingURL=chunk-AQATIMPC.js.map

@@ -23,6 +23,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
+
+
+
 @Component({
   selector: 'app-cad-func',
   standalone: true,
@@ -73,7 +76,12 @@ export class CadFuncComponent implements OnInit {
   // adicionar envio de documentos posteriormente
 
   thirdFormGroup = this._formBuilder.group({
-    thirdCtrl: ['', Validators.required],
+    profile: ['', Validators.required],
+    docCPF: ['', Validators.required],
+    CTPS: ['', Validators.required],
+    reservista: ['', Validators.required],
+    comprovanteResidencia: ['', Validators.required],
+    certificadoFormação: ['', Validators.required]
   });
 
   stepperOrientation: Observable<StepperOrientation>;

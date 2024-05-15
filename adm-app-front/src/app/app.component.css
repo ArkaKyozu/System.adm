@@ -12,15 +12,26 @@
   margin: 1rem;
 }
 
-.nav-item img{
+.nav-item:hover {
+  transform: scale(1.2);
+  border-radius: 1rem;
+}
+
+.nav-item{
+  transition: transform .5s
+}
+
+
+.nav-item-img {
   margin: 0;
 }
 
 .prof-img{
-  margin: 5rem;
+  transition: transform .5s;
+  border-radius: 5rem;
+  width: 12rem;
 }
 
 .nav-link{
   text-align: center;
 }
-

@@ -306,11 +306,13 @@ var CdkPortal = _CdkPortal;
       selector: "[cdkPortal]",
       exportAs: "cdkPortal"
     }]
-  }], () => [{
-    type: TemplateRef
-  }, {
-    type: ViewContainerRef
-  }], null);
+  }], function() {
+    return [{
+      type: TemplateRef
+    }, {
+      type: ViewContainerRef
+    }];
+  }, null);
 })();
 var _TemplatePortalDirective = class _TemplatePortalDirective extends CdkPortal {
 };
@@ -465,17 +467,19 @@ var CdkPortalOutlet = _CdkPortalOutlet;
       exportAs: "cdkPortalOutlet",
       inputs: ["portal: cdkPortalOutlet"]
     }]
-  }], () => [{
-    type: ComponentFactoryResolver$1
+  }], function() {
+    return [{
+      type: ComponentFactoryResolver$1
+    }, {
+      type: ViewContainerRef
+    }, {
+      type: void 0,
+      decorators: [{
+        type: Inject,
+        args: [DOCUMENT]
+      }]
+    }];
   }, {
-    type: ViewContainerRef
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Inject,
-      args: [DOCUMENT]
-    }]
-  }], {
     attached: [{
       type: Output
     }]
@@ -545,4 +549,4 @@ export {
   CdkPortalOutlet,
   PortalModule
 };
-//# sourceMappingURL=chunk-PMULIARS.js.map
+//# sourceMappingURL=chunk-NHLIB5UZ.js.map

@@ -9,7 +9,7 @@ import {
   coerceElement,
   coerceNumberProperty,
   normalizePassiveListenerOptions
-} from "./chunk-D2UX4FE4.js";
+} from "./chunk-JCB3FTCW.js";
 import {
   DOCUMENT
 } from "./chunk-JPJ6VI5J.js";
@@ -226,9 +226,11 @@ var ContentObserver = _ContentObserver;
     args: [{
       providedIn: "root"
     }]
-  }], () => [{
-    type: MutationObserverFactory
-  }], null);
+  }], function() {
+    return [{
+      type: MutationObserverFactory
+    }];
+  }, null);
 })();
 var _CdkObserveContent = class _CdkObserveContent {
   /**
@@ -239,7 +241,7 @@ var _CdkObserveContent = class _CdkObserveContent {
     return this._disabled;
   }
   set disabled(value) {
-    this._disabled = value;
+    this._disabled = coerceBooleanProperty(value);
     this._disabled ? this._unsubscribe() : this._subscribe();
   }
   /** Debounce interval for emitting the changes. */
@@ -284,14 +286,13 @@ _CdkObserveContent.ɵdir = ɵɵdefineDirective({
   type: _CdkObserveContent,
   selectors: [["", "cdkObserveContent", ""]],
   inputs: {
-    disabled: ["cdkObserveContentDisabled", "disabled", booleanAttribute],
+    disabled: ["cdkObserveContentDisabled", "disabled"],
     debounce: "debounce"
   },
   outputs: {
     event: "cdkObserveContent"
   },
-  exportAs: ["cdkObserveContent"],
-  features: [ɵɵInputTransformsFeature]
+  exportAs: ["cdkObserveContent"]
 });
 var CdkObserveContent = _CdkObserveContent;
 (() => {
@@ -301,23 +302,22 @@ var CdkObserveContent = _CdkObserveContent;
       selector: "[cdkObserveContent]",
       exportAs: "cdkObserveContent"
     }]
-  }], () => [{
-    type: ContentObserver
+  }], function() {
+    return [{
+      type: ContentObserver
+    }, {
+      type: ElementRef
+    }, {
+      type: NgZone
+    }];
   }, {
-    type: ElementRef
-  }, {
-    type: NgZone
-  }], {
     event: [{
       type: Output,
       args: ["cdkObserveContent"]
     }],
     disabled: [{
       type: Input,
-      args: [{
-        alias: "cdkObserveContentDisabled",
-        transform: booleanAttribute
-      }]
+      args: ["cdkObserveContentDisabled"]
     }],
     debounce: [{
       type: Input
@@ -538,15 +538,17 @@ var AriaDescriber = _AriaDescriber;
     args: [{
       providedIn: "root"
     }]
-  }], () => [{
-    type: void 0,
-    decorators: [{
-      type: Inject,
-      args: [DOCUMENT]
-    }]
-  }, {
-    type: Platform
-  }], null);
+  }], function() {
+    return [{
+      type: void 0,
+      decorators: [{
+        type: Inject,
+        args: [DOCUMENT]
+      }]
+    }, {
+      type: Platform
+    }];
+  }, null);
 })();
 function getKey(message, role) {
   return typeof message === "string" ? `${role || ""}/${message}` : message;
@@ -1001,9 +1003,11 @@ var InteractivityChecker = _InteractivityChecker;
     args: [{
       providedIn: "root"
     }]
-  }], () => [{
-    type: Platform
-  }], null);
+  }], function() {
+    return [{
+      type: Platform
+    }];
+  }, null);
 })();
 function getFrameElement(window2) {
   try {
@@ -1326,17 +1330,19 @@ var FocusTrapFactory = _FocusTrapFactory;
     args: [{
       providedIn: "root"
     }]
-  }], () => [{
-    type: InteractivityChecker
-  }, {
-    type: NgZone
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Inject,
-      args: [DOCUMENT]
-    }]
-  }], null);
+  }], function() {
+    return [{
+      type: InteractivityChecker
+    }, {
+      type: NgZone
+    }, {
+      type: void 0,
+      decorators: [{
+        type: Inject,
+        args: [DOCUMENT]
+      }]
+    }];
+  }, null);
 })();
 var _CdkTrapFocus = class _CdkTrapFocus {
   /** Whether the focus trap is active. */
@@ -1344,7 +1350,17 @@ var _CdkTrapFocus = class _CdkTrapFocus {
     return this.focusTrap.enabled;
   }
   set enabled(value) {
-    this.focusTrap.enabled = value;
+    this.focusTrap.enabled = coerceBooleanProperty(value);
+  }
+  /**
+   * Whether the directive should automatically move focus into the trapped region upon
+   * initialization and return focus to the previous activeElement upon destruction.
+   */
+  get autoCapture() {
+    return this._autoCapture;
+  }
+  set autoCapture(value) {
+    this._autoCapture = coerceBooleanProperty(value);
   }
   constructor(_elementRef, _focusTrapFactory, _document) {
     this._elementRef = _elementRef;
@@ -1388,11 +1404,11 @@ _CdkTrapFocus.ɵdir = ɵɵdefineDirective({
   type: _CdkTrapFocus,
   selectors: [["", "cdkTrapFocus", ""]],
   inputs: {
-    enabled: ["cdkTrapFocus", "enabled", booleanAttribute],
-    autoCapture: ["cdkTrapFocusAutoCapture", "autoCapture", booleanAttribute]
+    enabled: ["cdkTrapFocus", "enabled"],
+    autoCapture: ["cdkTrapFocusAutoCapture", "autoCapture"]
   },
   exportAs: ["cdkTrapFocus"],
-  features: [ɵɵInputTransformsFeature, ɵɵNgOnChangesFeature]
+  features: [ɵɵNgOnChangesFeature]
 });
 var CdkTrapFocus = _CdkTrapFocus;
 (() => {
@@ -1402,30 +1418,26 @@ var CdkTrapFocus = _CdkTrapFocus;
       selector: "[cdkTrapFocus]",
       exportAs: "cdkTrapFocus"
     }]
-  }], () => [{
-    type: ElementRef
+  }], function() {
+    return [{
+      type: ElementRef
+    }, {
+      type: FocusTrapFactory
+    }, {
+      type: void 0,
+      decorators: [{
+        type: Inject,
+        args: [DOCUMENT]
+      }]
+    }];
   }, {
-    type: FocusTrapFactory
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Inject,
-      args: [DOCUMENT]
-    }]
-  }], {
     enabled: [{
       type: Input,
-      args: [{
-        alias: "cdkTrapFocus",
-        transform: booleanAttribute
-      }]
+      args: ["cdkTrapFocus"]
     }],
     autoCapture: [{
       type: Input,
-      args: [{
-        alias: "cdkTrapFocusAutoCapture",
-        transform: booleanAttribute
-      }]
+      args: ["cdkTrapFocusAutoCapture"]
     }]
   });
 })();
@@ -1593,27 +1605,29 @@ var ConfigurableFocusTrapFactory = _ConfigurableFocusTrapFactory;
     args: [{
       providedIn: "root"
     }]
-  }], () => [{
-    type: InteractivityChecker
-  }, {
-    type: NgZone
-  }, {
-    type: FocusTrapManager
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Inject,
-      args: [DOCUMENT]
-    }]
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Optional
+  }], function() {
+    return [{
+      type: InteractivityChecker
     }, {
-      type: Inject,
-      args: [FOCUS_TRAP_INERT_STRATEGY]
-    }]
-  }], null);
+      type: NgZone
+    }, {
+      type: FocusTrapManager
+    }, {
+      type: void 0,
+      decorators: [{
+        type: Inject,
+        args: [DOCUMENT]
+      }]
+    }, {
+      type: void 0,
+      decorators: [{
+        type: Optional
+      }, {
+        type: Inject,
+        args: [FOCUS_TRAP_INERT_STRATEGY]
+      }]
+    }];
+  }, null);
 })();
 function isFakeMousedownFromScreenReader(event) {
   return event.buttons === 0 || event.detail === 0;
@@ -1699,25 +1713,27 @@ var InputModalityDetector = _InputModalityDetector;
     args: [{
       providedIn: "root"
     }]
-  }], () => [{
-    type: Platform
-  }, {
-    type: NgZone
-  }, {
-    type: Document,
-    decorators: [{
-      type: Inject,
-      args: [DOCUMENT]
-    }]
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Optional
+  }], function() {
+    return [{
+      type: Platform
     }, {
-      type: Inject,
-      args: [INPUT_MODALITY_DETECTOR_OPTIONS]
-    }]
-  }], null);
+      type: NgZone
+    }, {
+      type: Document,
+      decorators: [{
+        type: Inject,
+        args: [DOCUMENT]
+      }]
+    }, {
+      type: void 0,
+      decorators: [{
+        type: Optional
+      }, {
+        type: Inject,
+        args: [INPUT_MODALITY_DETECTOR_OPTIONS]
+      }]
+    }];
+  }, null);
 })();
 var LIVE_ANNOUNCER_ELEMENT_TOKEN = new InjectionToken("liveAnnouncerElement", {
   providedIn: "root",
@@ -1837,31 +1853,33 @@ var LiveAnnouncer = _LiveAnnouncer;
     args: [{
       providedIn: "root"
     }]
-  }], () => [{
-    type: void 0,
-    decorators: [{
-      type: Optional
+  }], function() {
+    return [{
+      type: void 0,
+      decorators: [{
+        type: Optional
+      }, {
+        type: Inject,
+        args: [LIVE_ANNOUNCER_ELEMENT_TOKEN]
+      }]
     }, {
-      type: Inject,
-      args: [LIVE_ANNOUNCER_ELEMENT_TOKEN]
-    }]
-  }, {
-    type: NgZone
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Inject,
-      args: [DOCUMENT]
-    }]
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Optional
+      type: NgZone
     }, {
-      type: Inject,
-      args: [LIVE_ANNOUNCER_DEFAULT_OPTIONS]
-    }]
-  }], null);
+      type: void 0,
+      decorators: [{
+        type: Inject,
+        args: [DOCUMENT]
+      }]
+    }, {
+      type: void 0,
+      decorators: [{
+        type: Optional
+      }, {
+        type: Inject,
+        args: [LIVE_ANNOUNCER_DEFAULT_OPTIONS]
+      }]
+    }];
+  }, null);
 })();
 var _CdkAriaLive = class _CdkAriaLive {
   /** The aria-live politeness level to use when announcing messages. */
@@ -1920,15 +1938,17 @@ var CdkAriaLive = _CdkAriaLive;
       selector: "[cdkAriaLive]",
       exportAs: "cdkAriaLive"
     }]
-  }], () => [{
-    type: ElementRef
+  }], function() {
+    return [{
+      type: ElementRef
+    }, {
+      type: LiveAnnouncer
+    }, {
+      type: ContentObserver
+    }, {
+      type: NgZone
+    }];
   }, {
-    type: LiveAnnouncer
-  }, {
-    type: ContentObserver
-  }, {
-    type: NgZone
-  }], {
     politeness: [{
       type: Input,
       args: ["cdkAriaLive"]
@@ -2223,29 +2243,31 @@ var FocusMonitor = _FocusMonitor;
     args: [{
       providedIn: "root"
     }]
-  }], () => [{
-    type: NgZone
-  }, {
-    type: Platform
-  }, {
-    type: InputModalityDetector
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Optional
+  }], function() {
+    return [{
+      type: NgZone
     }, {
-      type: Inject,
-      args: [DOCUMENT]
-    }]
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Optional
+      type: Platform
     }, {
-      type: Inject,
-      args: [FOCUS_MONITOR_DEFAULT_OPTIONS]
-    }]
-  }], null);
+      type: InputModalityDetector
+    }, {
+      type: void 0,
+      decorators: [{
+        type: Optional
+      }, {
+        type: Inject,
+        args: [DOCUMENT]
+      }]
+    }, {
+      type: void 0,
+      decorators: [{
+        type: Optional
+      }, {
+        type: Inject,
+        args: [FOCUS_MONITOR_DEFAULT_OPTIONS]
+      }]
+    }];
+  }, null);
 })();
 var _CdkMonitorFocus = class _CdkMonitorFocus {
   constructor(_elementRef, _focusMonitor) {
@@ -2290,11 +2312,13 @@ var CdkMonitorFocus = _CdkMonitorFocus;
       selector: "[cdkMonitorElementFocus], [cdkMonitorSubtreeFocus]",
       exportAs: "cdkMonitorFocus"
     }]
-  }], () => [{
-    type: ElementRef
+  }], function() {
+    return [{
+      type: ElementRef
+    }, {
+      type: FocusMonitor
+    }];
   }, {
-    type: FocusMonitor
-  }], {
     cdkFocusChange: [{
       type: Output
     }]
@@ -2371,15 +2395,17 @@ var HighContrastModeDetector = _HighContrastModeDetector;
     args: [{
       providedIn: "root"
     }]
-  }], () => [{
-    type: Platform
-  }, {
-    type: void 0,
-    decorators: [{
-      type: Inject,
-      args: [DOCUMENT]
-    }]
-  }], null);
+  }], function() {
+    return [{
+      type: Platform
+    }, {
+      type: void 0,
+      decorators: [{
+        type: Inject,
+        args: [DOCUMENT]
+      }]
+    }];
+  }, null);
 })();
 var _A11yModule = class _A11yModule {
   constructor(highContrastModeDetector) {
@@ -2407,9 +2433,11 @@ var A11yModule = _A11yModule;
       declarations: [CdkAriaLive, CdkTrapFocus, CdkMonitorFocus],
       exports: [CdkAriaLive, CdkTrapFocus, CdkMonitorFocus]
     }]
-  }], () => [{
-    type: HighContrastModeDetector
-  }], null);
+  }], function() {
+    return [{
+      type: HighContrastModeDetector
+    }];
+  }, null);
 })();
 
 // node_modules/@angular/cdk/fesm2022/bidi.mjs
@@ -2457,15 +2485,17 @@ var Directionality = _Directionality;
     args: [{
       providedIn: "root"
     }]
-  }], () => [{
-    type: void 0,
-    decorators: [{
-      type: Optional
-    }, {
-      type: Inject,
-      args: [DIR_DOCUMENT]
-    }]
-  }], null);
+  }], function() {
+    return [{
+      type: void 0,
+      decorators: [{
+        type: Optional
+      }, {
+        type: Inject,
+        args: [DIR_DOCUMENT]
+      }]
+    }];
+  }, null);
 })();
 var _Dir = class _Dir {
   constructor() {
@@ -2569,7 +2599,7 @@ var BidiModule = _BidiModule;
 })();
 
 // node_modules/@angular/cdk/fesm2022/cdk.mjs
-var VERSION = new Version("17.0.1");
+var VERSION = new Version("16.2.14");
 
 // node_modules/@angular/material/fesm2022/core.mjs
 var _c0 = ["*", [["mat-option"], ["ng-container"]]];
@@ -4562,8 +4592,6 @@ export {
   ActiveDescendantKeyManager,
   FocusKeyManager,
   CdkTrapFocus,
-  isFakeMousedownFromScreenReader,
-  isFakeTouchstartFromScreenReader,
   LiveAnnouncer,
   FocusMonitor,
   CdkMonitorFocus,
@@ -4612,4 +4640,4 @@ export {
   MatOptionModule,
   MatRippleLoader
 };
-//# sourceMappingURL=chunk-P3BMRCS6.js.map
+//# sourceMappingURL=chunk-VSFOEEXK.js.map

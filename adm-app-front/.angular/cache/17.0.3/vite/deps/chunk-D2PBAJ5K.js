@@ -2,7 +2,7 @@ import {
   Directionality,
   MatCommonModule,
   ObserversModule
-} from "./chunk-P3BMRCS6.js";
+} from "./chunk-VSFOEEXK.js";
 import {
   animate,
   state,
@@ -13,7 +13,7 @@ import {
 import {
   Platform,
   coerceBooleanProperty
-} from "./chunk-D2UX4FE4.js";
+} from "./chunk-JCB3FTCW.js";
 import {
   CommonModule,
   DOCUMENT,
@@ -184,7 +184,9 @@ var SharedResizeObserver = _SharedResizeObserver;
     args: [{
       providedIn: "root"
     }]
-  }], () => [], null);
+  }], function() {
+    return [];
+  }, null);
 })();
 
 // node_modules/@angular/material/fesm2022/form-field.mjs
@@ -1563,4 +1565,4 @@ export {
   MatFormField,
   MatFormFieldModule
 };
-//# sourceMappingURL=chunk-JX7ROJYR.js.map
+//# sourceMappingURL=chunk-D2PBAJ5K.js.map
