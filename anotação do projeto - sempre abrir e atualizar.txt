@@ -116,9 +116,23 @@ no componente Pessoal.
 
 30/04
 
--criar função para deletar dados para Funcionarios=== em andamento
--melhorar designer de edição do financeiro e produto === Resolvido
+- criar função para deletar dados para Funcionarios=== em andamento
+- melhorar designer de edição do financeiro e produto === Resolvido
 - Resolvi não criar a função para deletar um cargo no momento, mas pretendo implementar no futuro
 - verificar o tipo de dados para cadastrar documentos CPF / RG / PISPASEP
 - falta arrumar o designer do menu lateral 
 - criação do deashBoard 
+
+08/05
+
+- Desisti da ideia do deashboard por enquanto 
+- começar a trabalhar na pagina de login, buscar um freamework para facilitar o processo 
+
+15/05
+
+- Revisando todo o projeto e testando as funcinalidades === resolvido
+- Preciso adicionar a Formação ao cad.Funcionarios === Resolvido
+- adicionar campos para envio da documentação comprobatoria === resolvido
+- como adicionar arquivos em um banco de dados ? 
+- mudar a cor da label ao anexar um documento ?
+- apagar os dados digitados ao clicar em submit. 

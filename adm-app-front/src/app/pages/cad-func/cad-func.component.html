@@ -124,6 +124,17 @@
       </mat-form-field>
 
       <mat-form-field>
+        <mat-label>Formação Academica</mat-label>
+        <input
+          matInput
+          placeholder="Formação Academica"
+          formControlName="Formacao"
+          required
+        />
+      </mat-form-field>
+
+
+      <mat-form-field>
         <mat-label>Email</mat-label>
         <input matInput type="email" placeholder="Email" formControlName="Email" required />
       </mat-form-field>
@@ -234,9 +245,33 @@
 
   <mat-step [stepControl]="thirdFormGroup"  label="Documentação" class="top" >
     <form [formGroup]="thirdFormGroup" class="third">
-      <div class="input-group mb-3">
-        <label class="input-group-text" for="inputGroupFile01">Upload</label>
-        <input type="file" class="form-control" id="inputGroupFile01">
+      <div class="input-group mb-6">
+        <label class="input-group-text" for="inputGroupFile01">Foto 3x4</label>
+        <input type="file" class="documentos" id="inputGroupFile01" formControlName="profile">
+      </div>
+      <div class="input-group mb-6">
+        <label class="input-group-text" for="inputGroupFile02">Documento de identificação</label>
+        <input type="file" class="documentos" id="inputGroupFile02" formControlName="docCPF">
+      </div>
+      <div class="input-group mb-6">
+        <label class="input-group-text" for="inputGroupFile03">Carteira de Trabalho</label>
+        <input type="file" class="documentos" id="inputGroupFile03" formControlName="CTPS">
+      </div>
+      <div class="input-group mb-6">
+        <label class="input-group-text" for="inputGroupFile04">Reservista</label>
+        <input type="file" class="documentos" id="inputGroupFile04" formControlName="reservista">
+      </div>
+      <div class="input-group mb-6">
+        <label class="input-group-text" for="inputGroupFile05">Comprovante de Residencia</label>
+        <input type="file" class="documentos" id="inputGroupFile05" formControlName="comprovanteResidencia">
+      </div>
+      <div class="input-group mb-6">
+        <label class="input-group-text" for="inputGroupFile06">Certificado</label>
+        <input type="file" class="documentos" id="inputGroupFile06" formControlName="certificadoFormação">
+      </div>
+
+      <div class="botaoSubmit">
+        <input class="btn btn-primary" type="submit" value="Submit">
       </div>
     </form>
   </mat-step>

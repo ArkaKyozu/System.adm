@@ -21,6 +21,11 @@ const Pessoal = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    
+    Formacao: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
 
     Email: {
       type: DataTypes.STRING,

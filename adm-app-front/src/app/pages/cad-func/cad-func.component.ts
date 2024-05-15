@@ -24,8 +24,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
 
-
-
 @Component({
   selector: 'app-cad-func',
   standalone: true,
@@ -60,6 +58,7 @@ export class CadFuncComponent implements OnInit {
   secondFormGroup = this._formBuilder.group({
     CPF: ['', Validators.required],
     Nome: ['', Validators.required],
+    Formacao: ['', Validators.required],
     Email: ['', Validators.required],
     EstadoCivil: [''],
     RG: ['', Validators.required],

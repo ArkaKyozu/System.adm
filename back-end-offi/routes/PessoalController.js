@@ -9,6 +9,7 @@ router.post("/addPessoa", async function (req, res) {
   const PessoalModel = {
     CPF: req.body.CPF,
     Nome: req.body.Nome,
+    Formacao: req.body.Formacao,
     Email: req.body.Email,
     EstadoCivil: req.body.EstadoCivil,
     RG: req.body.RG,
@@ -52,6 +53,7 @@ router.put("/updatePessoal/:id", async function (req, res) {
   const PessoalModel = {
     CPF: req.body.CPF,
     Nome: req.body.Nome,
+    Formacao: req.body.Formacao,
     Email: req.body.Email,
     EstadoCivil: req.body.EstadoCivil,
     RG: req.body.RG,

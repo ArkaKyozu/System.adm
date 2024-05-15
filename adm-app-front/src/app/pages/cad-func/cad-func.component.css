@@ -21,3 +21,25 @@
 .btns{
   text-align: right;
 }
+
+.input-group{
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  width: 50rem;
+  margin-left: 18rem;
+}
+
+.documentos{
+  padding: 1.5rem;
+}
+
+.botaoSubmit{
+  text-align: right;
+  margin-right: 20rem;
+}
+
+.input-group-text{
+  background-color: rgb(67, 192, 67);
+  color: white;
+}
