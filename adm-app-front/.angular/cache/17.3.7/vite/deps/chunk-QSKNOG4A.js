@@ -9,7 +9,7 @@ import {
   coerceElement,
   coerceNumberProperty,
   normalizePassiveListenerOptions
-} from "./chunk-YCBXNVLA.js";
+} from "./chunk-IFDK24WJ.js";
 import {
   DOCUMENT
 } from "./chunk-7PR7W5GB.js";
@@ -37,9 +37,7 @@ import {
   ViewChild,
   ViewEncapsulation$1,
   booleanAttribute,
-  effect,
   inject,
-  isSignal,
   setClassMetadata,
   ɵɵInputTransformsFeature,
   ɵɵNgOnChangesFeature,
@@ -121,25 +119,6 @@ function hasModifierKey(event, ...modifiers) {
 }
 
 // node_modules/@angular/cdk/fesm2022/observers.mjs
-function shouldIgnoreRecord(record) {
-  if (record.type === "characterData" && record.target instanceof Comment) {
-    return true;
-  }
-  if (record.type === "childList") {
-    for (let i = 0; i < record.addedNodes.length; i++) {
-      if (!(record.addedNodes[i] instanceof Comment)) {
-        return false;
-      }
-    }
-    for (let i = 0; i < record.removedNodes.length; i++) {
-      if (!(record.removedNodes[i] instanceof Comment)) {
-        return false;
-      }
-    }
-    return true;
-  }
-  return false;
-}
 var _MutationObserverFactory = class _MutationObserverFactory {
   create(callback) {
     return typeof MutationObserver === "undefined" ? null : new MutationObserver(callback);
@@ -174,7 +153,7 @@ var _ContentObserver = class _ContentObserver {
     const element = coerceElement(elementOrRef);
     return new Observable((observer) => {
       const stream = this._observeElement(element);
-      const subscription = stream.pipe(map((records) => records.filter((record) => !shouldIgnoreRecord(record))), filter((records) => !!records.length)).subscribe(observer);
+      const subscription = stream.subscribe(observer);
       return () => {
         subscription.unsubscribe();
         this._unobserveElement(element);
@@ -313,7 +292,6 @@ _CdkObserveContent.ɵdir = ɵɵdefineDirective({
     event: "cdkObserveContent"
   },
   exportAs: ["cdkObserveContent"],
-  standalone: true,
   features: [ɵɵInputTransformsFeature]
 });
 var CdkObserveContent = _CdkObserveContent;
@@ -322,8 +300,7 @@ var CdkObserveContent = _CdkObserveContent;
     type: Directive,
     args: [{
       selector: "[cdkObserveContent]",
-      exportAs: "cdkObserveContent",
-      standalone: true
+      exportAs: "cdkObserveContent"
     }]
   }], () => [{
     type: ContentObserver
@@ -355,7 +332,7 @@ _ObserversModule.ɵfac = function ObserversModule_Factory(t) {
 };
 _ObserversModule.ɵmod = ɵɵdefineNgModule({
   type: _ObserversModule,
-  imports: [CdkObserveContent],
+  declarations: [CdkObserveContent],
   exports: [CdkObserveContent]
 });
 _ObserversModule.ɵinj = ɵɵdefineInjector({
@@ -366,8 +343,8 @@ var ObserversModule = _ObserversModule;
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(ObserversModule, [{
     type: NgModule,
     args: [{
-      imports: [CdkObserveContent],
       exports: [CdkObserveContent],
+      declarations: [CdkObserveContent],
       providers: [MutationObserverFactory]
     }]
   }], null, null);
@@ -377,17 +354,15 @@ var ObserversModule = _ObserversModule;
 var ID_DELIMITER = " ";
 function addAriaReferencedId(el, attr, id) {
   const ids = getAriaReferenceIds(el, attr);
-  id = id.trim();
-  if (ids.some((existingId) => existingId.trim() === id)) {
+  if (ids.some((existingId) => existingId.trim() == id.trim())) {
     return;
   }
-  ids.push(id);
+  ids.push(id.trim());
   el.setAttribute(attr, ids.join(ID_DELIMITER));
 }
 function removeAriaReferencedId(el, attr, id) {
   const ids = getAriaReferenceIds(el, attr);
-  id = id.trim();
-  const filteredIds = ids.filter((val) => val !== id);
+  const filteredIds = ids.filter((val) => val != id.trim());
   if (filteredIds.length) {
     el.setAttribute(attr, filteredIds.join(ID_DELIMITER));
   } else {
@@ -395,8 +370,7 @@ function removeAriaReferencedId(el, attr, id) {
   }
 }
 function getAriaReferenceIds(el, attr) {
-  const attrValue = el.getAttribute(attr);
-  return attrValue?.match(/\S+/g) ?? [];
+  return (el.getAttribute(attr) || "").match(/\S+/g) || [];
 }
 var CDK_DESCRIBEDBY_ID_PREFIX = "cdk-describedby-message";
 var CDK_DESCRIBEDBY_HOST_ATTRIBUTE = "cdk-describedby-host";
@@ -584,7 +558,7 @@ function setMessageId(element, serviceId) {
   }
 }
 var ListKeyManager = class {
-  constructor(_items, injector) {
+  constructor(_items) {
     this._items = _items;
     this._activeItemIndex = -1;
     this._activeItem = null;
@@ -603,13 +577,14 @@ var ListKeyManager = class {
     this.tabOut = new Subject();
     this.change = new Subject();
     if (_items instanceof QueryList) {
-      this._itemChangesSubscription = _items.changes.subscribe((newItems) => this._itemsChanged(newItems.toArray()));
-    } else if (isSignal(_items)) {
-      if (!injector && (typeof ngDevMode === "undefined" || ngDevMode)) {
-        throw new Error("ListKeyManager constructed with a signal must receive an injector");
-      }
-      this._effectRef = effect(() => this._itemsChanged(_items()), {
-        injector
+      this._itemChangesSubscription = _items.changes.subscribe((newItems) => {
+        if (this._activeItem) {
+          const itemArray = newItems.toArray();
+          const newIndex = itemArray.indexOf(this._activeItem);
+          if (newIndex > -1 && newIndex !== this._activeItemIndex) {
+            this._activeItemIndex = newIndex;
+          }
+        }
       });
     }
   }
@@ -661,11 +636,8 @@ var ListKeyManager = class {
    * @param debounceInterval Time to wait after the last keystroke before setting the active item.
    */
   withTypeAhead(debounceInterval = 200) {
-    if (typeof ngDevMode === "undefined" || ngDevMode) {
-      const items = this._getItemsArray();
-      if (items.length > 0 && items.some((item) => typeof item.getLabel !== "function")) {
-        throw Error("ListKeyManager items in typeahead mode must implement the `getLabel` method.");
-      }
+    if ((typeof ngDevMode === "undefined" || ngDevMode) && this._items.length && this._items.some((item) => typeof item.getLabel !== "function")) {
+      throw Error("ListKeyManager items in typeahead mode must implement the `getLabel` method.");
     }
     this._typeaheadSubscription.unsubscribe();
     this._typeaheadSubscription = this._letterKeyStream.pipe(tap((letter) => this._pressedLetters.push(letter)), debounceTime(debounceInterval), filter(() => this._pressedLetters.length > 0), map(() => this._pressedLetters.join(""))).subscribe((inputString) => {
@@ -820,7 +792,7 @@ var ListKeyManager = class {
   }
   /** Sets the active item to the last enabled item in the list. */
   setLastItemActive() {
-    this._setActiveItemByIndex(this._getItemsArray().length - 1, -1);
+    this._setActiveItemByIndex(this._items.length - 1, -1);
   }
   /** Sets the active item to the next enabled item in the list. */
   setNextItemActive() {
@@ -841,7 +813,6 @@ var ListKeyManager = class {
   destroy() {
     this._typeaheadSubscription.unsubscribe();
     this._itemChangesSubscription?.unsubscribe();
-    this._effectRef?.destroy();
     this._letterKeyStream.complete();
     this.tabOut.complete();
     this.change.complete();
@@ -899,19 +870,7 @@ var ListKeyManager = class {
   }
   /** Returns the items as an array. */
   _getItemsArray() {
-    if (isSignal(this._items)) {
-      return this._items();
-    }
     return this._items instanceof QueryList ? this._items.toArray() : this._items;
-  }
-  /** Callback for when the items have changed. */
-  _itemsChanged(newItems) {
-    if (this._activeItem) {
-      const newIndex = newItems.indexOf(this._activeItem);
-      if (newIndex > -1 && newIndex !== this._activeItemIndex) {
-        this._activeItemIndex = newIndex;
-      }
-    }
   }
 };
 var ActiveDescendantKeyManager = class extends ListKeyManager {
@@ -1383,49 +1342,44 @@ var FocusTrapFactory = _FocusTrapFactory;
 var _CdkTrapFocus = class _CdkTrapFocus {
   /** Whether the focus trap is active. */
   get enabled() {
-    return this.focusTrap?.enabled || false;
+    return this.focusTrap.enabled;
   }
   set enabled(value) {
-    if (this.focusTrap) {
-      this.focusTrap.enabled = value;
-    }
+    this.focusTrap.enabled = value;
   }
   constructor(_elementRef, _focusTrapFactory, _document) {
     this._elementRef = _elementRef;
     this._focusTrapFactory = _focusTrapFactory;
     this._previouslyFocusedElement = null;
-    const platform = inject(Platform);
-    if (platform.isBrowser) {
-      this.focusTrap = this._focusTrapFactory.create(this._elementRef.nativeElement, true);
-    }
+    this.focusTrap = this._focusTrapFactory.create(this._elementRef.nativeElement, true);
   }
   ngOnDestroy() {
-    this.focusTrap?.destroy();
+    this.focusTrap.destroy();
     if (this._previouslyFocusedElement) {
       this._previouslyFocusedElement.focus();
       this._previouslyFocusedElement = null;
     }
   }
   ngAfterContentInit() {
-    this.focusTrap?.attachAnchors();
+    this.focusTrap.attachAnchors();
     if (this.autoCapture) {
       this._captureFocus();
     }
   }
   ngDoCheck() {
-    if (this.focusTrap && !this.focusTrap.hasAttached()) {
+    if (!this.focusTrap.hasAttached()) {
       this.focusTrap.attachAnchors();
     }
   }
   ngOnChanges(changes) {
     const autoCaptureChange = changes["autoCapture"];
-    if (autoCaptureChange && !autoCaptureChange.firstChange && this.autoCapture && this.focusTrap?.hasAttached()) {
+    if (autoCaptureChange && !autoCaptureChange.firstChange && this.autoCapture && this.focusTrap.hasAttached()) {
       this._captureFocus();
     }
   }
   _captureFocus() {
     this._previouslyFocusedElement = _getFocusedElementPierceShadowDom();
-    this.focusTrap?.focusInitialElementWhenReady();
+    this.focusTrap.focusInitialElementWhenReady();
   }
 };
 _CdkTrapFocus.ɵfac = function CdkTrapFocus_Factory(t) {
@@ -1439,7 +1393,6 @@ _CdkTrapFocus.ɵdir = ɵɵdefineDirective({
     autoCapture: [InputFlags.HasDecoratorInputTransform, "cdkTrapFocusAutoCapture", "autoCapture", booleanAttribute]
   },
   exportAs: ["cdkTrapFocus"],
-  standalone: true,
   features: [ɵɵInputTransformsFeature, ɵɵNgOnChangesFeature]
 });
 var CdkTrapFocus = _CdkTrapFocus;
@@ -1448,8 +1401,7 @@ var CdkTrapFocus = _CdkTrapFocus;
     type: Directive,
     args: [{
       selector: "[cdkTrapFocus]",
-      exportAs: "cdkTrapFocus",
-      standalone: true
+      exportAs: "cdkTrapFocus"
     }]
   }], () => [{
     type: ElementRef
@@ -1815,7 +1767,7 @@ var _LiveAnnouncer = class _LiveAnnouncer {
         if (typeof duration === "number") {
           this._previousTimeout = setTimeout(() => this.clear(), duration);
         }
-        this._currentResolve?.();
+        this._currentResolve();
         this._currentPromise = this._currentResolve = void 0;
       }, 100);
       return this._currentPromise;
@@ -1959,8 +1911,7 @@ _CdkAriaLive.ɵdir = ɵɵdefineDirective({
     politeness: [InputFlags.None, "cdkAriaLive", "politeness"],
     duration: [InputFlags.None, "cdkAriaLiveDuration", "duration"]
   },
-  exportAs: ["cdkAriaLive"],
-  standalone: true
+  exportAs: ["cdkAriaLive"]
 });
 var CdkAriaLive = _CdkAriaLive;
 (() => {
@@ -1968,8 +1919,7 @@ var CdkAriaLive = _CdkAriaLive;
     type: Directive,
     args: [{
       selector: "[cdkAriaLive]",
-      exportAs: "cdkAriaLive",
-      standalone: true
+      exportAs: "cdkAriaLive"
     }]
   }], () => [{
     type: ElementRef
@@ -1990,11 +1940,6 @@ var CdkAriaLive = _CdkAriaLive;
     }]
   });
 })();
-var FocusMonitorDetectionMode;
-(function(FocusMonitorDetectionMode2) {
-  FocusMonitorDetectionMode2[FocusMonitorDetectionMode2["IMMEDIATE"] = 0] = "IMMEDIATE";
-  FocusMonitorDetectionMode2[FocusMonitorDetectionMode2["EVENTUAL"] = 1] = "EVENTUAL";
-})(FocusMonitorDetectionMode || (FocusMonitorDetectionMode = {}));
 var FOCUS_MONITOR_DEFAULT_OPTIONS = new InjectionToken("cdk-focus-monitor-default-options");
 var captureEventListenerOptions = normalizePassiveListenerOptions({
   passive: true,
@@ -2027,7 +1972,7 @@ var _FocusMonitor = class _FocusMonitor {
       }
     };
     this._document = document2;
-    this._detectionMode = options?.detectionMode || FocusMonitorDetectionMode.IMMEDIATE;
+    this._detectionMode = options?.detectionMode || 0;
   }
   monitor(element, checkChildren = false) {
     const nativeElement = coerceElement(element);
@@ -2110,7 +2055,7 @@ var _FocusMonitor = class _FocusMonitor {
    * @param focusEventTarget The target of the focus event under examination.
    */
   _shouldBeAttributedToTouch(focusEventTarget) {
-    return this._detectionMode === FocusMonitorDetectionMode.EVENTUAL || !!focusEventTarget?.contains(this._inputModalityDetector._mostRecentTarget);
+    return this._detectionMode === 1 || !!focusEventTarget?.contains(this._inputModalityDetector._mostRecentTarget);
   }
   /**
    * Sets the focus classes on the element based on the given focus origin.
@@ -2135,7 +2080,7 @@ var _FocusMonitor = class _FocusMonitor {
     this._ngZone.runOutsideAngular(() => {
       this._origin = origin;
       this._originFromTouchInteraction = origin === "touch" && isFromInteraction;
-      if (this._detectionMode === FocusMonitorDetectionMode.IMMEDIATE) {
+      if (this._detectionMode === 0) {
         clearTimeout(this._originTimeoutId);
         const ms = this._originFromTouchInteraction ? TOUCH_BUFFER_MS : 1;
         this._originTimeoutId = setTimeout(() => this._origin = null, ms);
@@ -2336,8 +2281,7 @@ _CdkMonitorFocus.ɵdir = ɵɵdefineDirective({
   outputs: {
     cdkFocusChange: "cdkFocusChange"
   },
-  exportAs: ["cdkMonitorFocus"],
-  standalone: true
+  exportAs: ["cdkMonitorFocus"]
 });
 var CdkMonitorFocus = _CdkMonitorFocus;
 (() => {
@@ -2345,8 +2289,7 @@ var CdkMonitorFocus = _CdkMonitorFocus;
     type: Directive,
     args: [{
       selector: "[cdkMonitorElementFocus], [cdkMonitorSubtreeFocus]",
-      exportAs: "cdkMonitorFocus",
-      standalone: true
+      exportAs: "cdkMonitorFocus"
     }]
   }], () => [{
     type: ElementRef
@@ -2358,12 +2301,6 @@ var CdkMonitorFocus = _CdkMonitorFocus;
     }]
   });
 })();
-var HighContrastMode;
-(function(HighContrastMode2) {
-  HighContrastMode2[HighContrastMode2["NONE"] = 0] = "NONE";
-  HighContrastMode2[HighContrastMode2["BLACK_ON_WHITE"] = 1] = "BLACK_ON_WHITE";
-  HighContrastMode2[HighContrastMode2["WHITE_ON_BLACK"] = 2] = "WHITE_ON_BLACK";
-})(HighContrastMode || (HighContrastMode = {}));
 var BLACK_ON_WHITE_CSS_CLASS = "cdk-high-contrast-black-on-white";
 var WHITE_ON_BLACK_CSS_CLASS = "cdk-high-contrast-white-on-black";
 var HIGH_CONTRAST_MODE_ACTIVE_CSS_CLASS = "cdk-high-contrast-active";
@@ -2381,7 +2318,7 @@ var _HighContrastModeDetector = class _HighContrastModeDetector {
   /** Gets the current high-contrast-mode for the page. */
   getHighContrastMode() {
     if (!this._platform.isBrowser) {
-      return HighContrastMode.NONE;
+      return 0;
     }
     const testElement = this._document.createElement("div");
     testElement.style.backgroundColor = "rgb(1,2,3)";
@@ -2395,12 +2332,12 @@ var _HighContrastModeDetector = class _HighContrastModeDetector {
       case "rgb(0,0,0)":
       case "rgb(45,50,54)":
       case "rgb(32,32,32)":
-        return HighContrastMode.WHITE_ON_BLACK;
+        return 2;
       case "rgb(255,255,255)":
       case "rgb(255,250,239)":
-        return HighContrastMode.BLACK_ON_WHITE;
+        return 1;
     }
-    return HighContrastMode.NONE;
+    return 0;
   }
   ngOnDestroy() {
     this._breakpointSubscription.unsubscribe();
@@ -2412,9 +2349,9 @@ var _HighContrastModeDetector = class _HighContrastModeDetector {
       bodyClasses.remove(HIGH_CONTRAST_MODE_ACTIVE_CSS_CLASS, BLACK_ON_WHITE_CSS_CLASS, WHITE_ON_BLACK_CSS_CLASS);
       this._hasCheckedHighContrastMode = true;
       const mode = this.getHighContrastMode();
-      if (mode === HighContrastMode.BLACK_ON_WHITE) {
+      if (mode === 1) {
         bodyClasses.add(HIGH_CONTRAST_MODE_ACTIVE_CSS_CLASS, BLACK_ON_WHITE_CSS_CLASS);
-      } else if (mode === HighContrastMode.WHITE_ON_BLACK) {
+      } else if (mode === 2) {
         bodyClasses.add(HIGH_CONTRAST_MODE_ACTIVE_CSS_CLASS, WHITE_ON_BLACK_CSS_CLASS);
       }
     }
@@ -2455,7 +2392,8 @@ _A11yModule.ɵfac = function A11yModule_Factory(t) {
 };
 _A11yModule.ɵmod = ɵɵdefineNgModule({
   type: _A11yModule,
-  imports: [ObserversModule, CdkAriaLive, CdkTrapFocus, CdkMonitorFocus],
+  declarations: [CdkAriaLive, CdkTrapFocus, CdkMonitorFocus],
+  imports: [ObserversModule],
   exports: [CdkAriaLive, CdkTrapFocus, CdkMonitorFocus]
 });
 _A11yModule.ɵinj = ɵɵdefineInjector({
@@ -2466,7 +2404,8 @@ var A11yModule = _A11yModule;
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(A11yModule, [{
     type: NgModule,
     args: [{
-      imports: [ObserversModule, CdkAriaLive, CdkTrapFocus, CdkMonitorFocus],
+      imports: [ObserversModule],
+      declarations: [CdkAriaLive, CdkTrapFocus, CdkMonitorFocus],
       exports: [CdkAriaLive, CdkTrapFocus, CdkMonitorFocus]
     }]
   }], () => [{
@@ -2578,7 +2517,6 @@ _Dir.ɵdir = ɵɵdefineDirective({
     change: "dirChange"
   },
   exportAs: ["dir"],
-  standalone: true,
   features: [ɵɵProvidersFeature([{
     provide: Directionality,
     useExisting: _Dir
@@ -2597,8 +2535,7 @@ var Dir = _Dir;
       host: {
         "[attr.dir]": "_rawDir"
       },
-      exportAs: "dir",
-      standalone: true
+      exportAs: "dir"
     }]
   }], null, {
     change: [{
@@ -2617,7 +2554,7 @@ _BidiModule.ɵfac = function BidiModule_Factory(t) {
 };
 _BidiModule.ɵmod = ɵɵdefineNgModule({
   type: _BidiModule,
-  imports: [Dir],
+  declarations: [Dir],
   exports: [Dir]
 });
 _BidiModule.ɵinj = ɵɵdefineInjector({});
@@ -2626,14 +2563,14 @@ var BidiModule = _BidiModule;
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(BidiModule, [{
     type: NgModule,
     args: [{
-      imports: [Dir],
-      exports: [Dir]
+      exports: [Dir],
+      declarations: [Dir]
     }]
   }], null, null);
 })();
 
 // node_modules/@angular/cdk/fesm2022/cdk.mjs
-var VERSION = new Version("17.3.9");
+var VERSION = new Version("17.0.1");
 
 // node_modules/@angular/material/fesm2022/core.mjs
 var _c0 = ["*", [["mat-option"], ["ng-container"]]];
@@ -4674,4 +4611,4 @@ export {
   MatOptionModule,
   MatRippleLoader
 };
-//# sourceMappingURL=chunk-OBIN66RD.js.map
+//# sourceMappingURL=chunk-QSKNOG4A.js.map

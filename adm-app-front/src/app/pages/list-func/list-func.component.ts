@@ -90,6 +90,7 @@ export class ListFuncComponent implements OnInit {
         console.log('Dados Atualizados', response);
         this.yteste = true;
         this.butao = 'Editar'
+        window.location.reload()
       },
       (error) => {
         console.log('Não foi possivel atualizar os dados', error);

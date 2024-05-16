@@ -1,15 +1,14 @@
 import {
   BidiModule,
   Directionality
-} from "./chunk-OBIN66RD.js";
+} from "./chunk-QSKNOG4A.js";
 import {
   Platform,
-  RtlScrollAxisType,
   coerceElement,
   coerceNumberProperty,
   getRtlScrollAxisType,
   supportsScrollBehavior
-} from "./chunk-YCBXNVLA.js";
+} from "./chunk-IFDK24WJ.js";
 import {
   DOCUMENT
 } from "./chunk-7PR7W5GB.js";
@@ -99,14 +98,6 @@ var ArrayDataSource = class extends DataSource {
   disconnect() {
   }
 };
-var _ViewRepeaterOperation;
-(function(_ViewRepeaterOperation2) {
-  _ViewRepeaterOperation2[_ViewRepeaterOperation2["REPLACED"] = 0] = "REPLACED";
-  _ViewRepeaterOperation2[_ViewRepeaterOperation2["INSERTED"] = 1] = "INSERTED";
-  _ViewRepeaterOperation2[_ViewRepeaterOperation2["MOVED"] = 2] = "MOVED";
-  _ViewRepeaterOperation2[_ViewRepeaterOperation2["REMOVED"] = 3] = "REMOVED";
-})(_ViewRepeaterOperation || (_ViewRepeaterOperation = {}));
-var _VIEW_REPEATER_STRATEGY = new InjectionToken("_ViewRepeater");
 var _DisposeViewRepeaterStrategy = class {
   applyChanges(changes, viewContainerRef, itemContextFactory, itemValueResolver, itemViewChanged) {
     changes.forEachOperation((record, adjustedPreviousIndex, currentIndex) => {
@@ -115,14 +106,14 @@ var _DisposeViewRepeaterStrategy = class {
       if (record.previousIndex == null) {
         const insertContext = itemContextFactory(record, adjustedPreviousIndex, currentIndex);
         view = viewContainerRef.createEmbeddedView(insertContext.templateRef, insertContext.context, insertContext.index);
-        operation = _ViewRepeaterOperation.INSERTED;
+        operation = 1;
       } else if (currentIndex == null) {
         viewContainerRef.remove(adjustedPreviousIndex);
-        operation = _ViewRepeaterOperation.REMOVED;
+        operation = 3;
       } else {
         view = viewContainerRef.get(adjustedPreviousIndex);
         viewContainerRef.move(view, currentIndex);
-        operation = _ViewRepeaterOperation.MOVED;
+        operation = 2;
       }
       if (itemViewChanged) {
         itemViewChanged({
@@ -149,13 +140,13 @@ var _RecycleViewRepeaterStrategy = class {
       if (record.previousIndex == null) {
         const viewArgsFactory = () => itemContextFactory(record, adjustedPreviousIndex, currentIndex);
         view = this._insertView(viewArgsFactory, currentIndex, viewContainerRef, itemValueResolver(record));
-        operation = view ? _ViewRepeaterOperation.INSERTED : _ViewRepeaterOperation.REPLACED;
+        operation = view ? 1 : 0;
       } else if (currentIndex == null) {
         this._detachAndCacheView(adjustedPreviousIndex, viewContainerRef);
-        operation = _ViewRepeaterOperation.REMOVED;
+        operation = 3;
       } else {
         view = this._moveView(adjustedPreviousIndex, currentIndex, viewContainerRef, itemValueResolver(record));
-        operation = _ViewRepeaterOperation.MOVED;
+        operation = 2;
       }
       if (itemViewChanged) {
         itemViewChanged({
@@ -284,7 +275,7 @@ var SelectionModel = class {
     const oldValues = this.selected;
     const newSelectedSet = new Set(values);
     values.forEach((value) => this._markSelected(value));
-    oldValues.filter((value) => !newSelectedSet.has(this._getConcreteValue(value, newSelectedSet))).forEach((value) => this._unmarkSelected(value));
+    oldValues.filter((value) => !newSelectedSet.has(value)).forEach((value) => this._unmarkSelected(value));
     const changed = this._hasQueuedChanges();
     this._emitChangeEvent();
     return changed;
@@ -403,12 +394,11 @@ var SelectionModel = class {
     return !!(this._deselectedToEmit.length || this._selectedToEmit.length);
   }
   /** Returns a value that is comparable to inputValue by applying compareWith function, returns the same inputValue otherwise. */
-  _getConcreteValue(inputValue, selection) {
+  _getConcreteValue(inputValue) {
     if (!this.compareWith) {
       return inputValue;
     } else {
-      selection = selection ?? this._selection;
-      for (let selectedValue of selection) {
+      for (let selectedValue of this._selection) {
         if (this.compareWith(inputValue, selectedValue)) {
           return selectedValue;
         }
@@ -467,6 +457,7 @@ var UniqueSelectionDispatcher = _UniqueSelectionDispatcher;
     }]
   }], null, null);
 })();
+var _VIEW_REPEATER_STRATEGY = new InjectionToken("_ViewRepeater");
 
 // node_modules/@angular/cdk/fesm2022/scrolling.mjs
 var _c0 = ["contentWrapper"];
@@ -867,13 +858,13 @@ var _CdkScrollable = class _CdkScrollable {
     if (options.bottom != null) {
       options.top = el.scrollHeight - el.clientHeight - options.bottom;
     }
-    if (isRtl && getRtlScrollAxisType() != RtlScrollAxisType.NORMAL) {
+    if (isRtl && getRtlScrollAxisType() != 0) {
       if (options.left != null) {
         options.right = el.scrollWidth - el.clientWidth - options.left;
       }
-      if (getRtlScrollAxisType() == RtlScrollAxisType.INVERTED) {
+      if (getRtlScrollAxisType() == 2) {
         options.left = options.right;
-      } else if (getRtlScrollAxisType() == RtlScrollAxisType.NEGATED) {
+      } else if (getRtlScrollAxisType() == 1) {
         options.left = options.right ? -options.right : options.right;
       }
     } else {
@@ -921,13 +912,13 @@ var _CdkScrollable = class _CdkScrollable {
     } else if (from == "end") {
       from = isRtl ? LEFT : RIGHT;
     }
-    if (isRtl && getRtlScrollAxisType() == RtlScrollAxisType.INVERTED) {
+    if (isRtl && getRtlScrollAxisType() == 2) {
       if (from == LEFT) {
         return el.scrollWidth - el.clientWidth - el.scrollLeft;
       } else {
         return el.scrollLeft;
       }
-    } else if (isRtl && getRtlScrollAxisType() == RtlScrollAxisType.NEGATED) {
+    } else if (isRtl && getRtlScrollAxisType() == 1) {
       if (from == LEFT) {
         return el.scrollLeft + el.scrollWidth - el.clientWidth;
       } else {
@@ -1011,7 +1002,7 @@ var _ViewportRuler = class _ViewportRuler {
     }
     return output;
   }
-  /** Gets a DOMRect for the viewport's bounds. */
+  /** Gets a ClientRect for the viewport's bounds. */
   getViewportRect() {
     const scrollPosition = this.getViewportScrollPosition();
     const {
@@ -1989,14 +1980,13 @@ var ScrollingModule = _ScrollingModule;
 export {
   DataSource,
   isDataSource,
-  _ViewRepeaterOperation,
-  _VIEW_REPEATER_STRATEGY,
   _DisposeViewRepeaterStrategy,
   _RecycleViewRepeaterStrategy,
   SelectionModel,
+  _VIEW_REPEATER_STRATEGY,
   ScrollDispatcher,
   ViewportRuler,
   CdkScrollableModule,
   ScrollingModule
 };
-//# sourceMappingURL=chunk-625IBW3P.js.map
+//# sourceMappingURL=chunk-BW2AUJJX.js.map

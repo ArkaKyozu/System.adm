@@ -8,7 +8,6 @@ import {
   EventEmitter,
   Inject,
   Injector,
-  Input,
   InputFlags,
   NgModule,
   Output,
@@ -298,7 +297,6 @@ _CdkPortal.ɵdir = ɵɵdefineDirective({
   type: _CdkPortal,
   selectors: [["", "cdkPortal", ""]],
   exportAs: ["cdkPortal"],
-  standalone: true,
   features: [ɵɵInheritDefinitionFeature]
 });
 var CdkPortal = _CdkPortal;
@@ -307,8 +305,7 @@ var CdkPortal = _CdkPortal;
     type: Directive,
     args: [{
       selector: "[cdkPortal]",
-      exportAs: "cdkPortal",
-      standalone: true
+      exportAs: "cdkPortal"
     }]
   }], () => [{
     type: TemplateRef
@@ -328,7 +325,6 @@ _TemplatePortalDirective.ɵdir = ɵɵdefineDirective({
   type: _TemplatePortalDirective,
   selectors: [["", "cdk-portal", ""], ["", "portal", ""]],
   exportAs: ["cdkPortal"],
-  standalone: true,
   features: [ɵɵProvidersFeature([{
     provide: CdkPortal,
     useExisting: _TemplatePortalDirective
@@ -344,8 +340,7 @@ var TemplatePortalDirective = _TemplatePortalDirective;
       providers: [{
         provide: CdkPortal,
         useExisting: TemplatePortalDirective
-      }],
-      standalone: true
+      }]
     }]
   }], null, null);
 })();
@@ -460,7 +455,6 @@ _CdkPortalOutlet.ɵdir = ɵɵdefineDirective({
     attached: "attached"
   },
   exportAs: ["cdkPortalOutlet"],
-  standalone: true,
   features: [ɵɵInheritDefinitionFeature]
 });
 var CdkPortalOutlet = _CdkPortalOutlet;
@@ -470,7 +464,7 @@ var CdkPortalOutlet = _CdkPortalOutlet;
     args: [{
       selector: "[cdkPortalOutlet]",
       exportAs: "cdkPortalOutlet",
-      standalone: true
+      inputs: ["portal: cdkPortalOutlet"]
     }]
   }], () => [{
     type: ComponentFactoryResolver$1
@@ -483,10 +477,6 @@ var CdkPortalOutlet = _CdkPortalOutlet;
       args: [DOCUMENT]
     }]
   }], {
-    portal: [{
-      type: Input,
-      args: ["cdkPortalOutlet"]
-    }],
     attached: [{
       type: Output
     }]
@@ -507,7 +497,6 @@ _PortalHostDirective.ɵdir = ɵɵdefineDirective({
     portal: [InputFlags.None, "cdkPortalHost", "portal"]
   },
   exportAs: ["cdkPortalHost"],
-  standalone: true,
   features: [ɵɵProvidersFeature([{
     provide: CdkPortalOutlet,
     useExisting: _PortalHostDirective
@@ -520,15 +509,11 @@ var PortalHostDirective = _PortalHostDirective;
     args: [{
       selector: "[cdkPortalHost], [portalHost]",
       exportAs: "cdkPortalHost",
-      inputs: [{
-        name: "portal",
-        alias: "cdkPortalHost"
-      }],
+      inputs: ["portal: cdkPortalHost"],
       providers: [{
         provide: CdkPortalOutlet,
         useExisting: PortalHostDirective
-      }],
-      standalone: true
+      }]
     }]
   }], null, null);
 })();
@@ -539,7 +524,7 @@ _PortalModule.ɵfac = function PortalModule_Factory(t) {
 };
 _PortalModule.ɵmod = ɵɵdefineNgModule({
   type: _PortalModule,
-  imports: [CdkPortal, CdkPortalOutlet, TemplatePortalDirective, PortalHostDirective],
+  declarations: [CdkPortal, CdkPortalOutlet, TemplatePortalDirective, PortalHostDirective],
   exports: [CdkPortal, CdkPortalOutlet, TemplatePortalDirective, PortalHostDirective]
 });
 _PortalModule.ɵinj = ɵɵdefineInjector({});
@@ -548,8 +533,8 @@ var PortalModule = _PortalModule;
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(PortalModule, [{
     type: NgModule,
     args: [{
-      imports: [CdkPortal, CdkPortalOutlet, TemplatePortalDirective, PortalHostDirective],
-      exports: [CdkPortal, CdkPortalOutlet, TemplatePortalDirective, PortalHostDirective]
+      exports: [CdkPortal, CdkPortalOutlet, TemplatePortalDirective, PortalHostDirective],
+      declarations: [CdkPortal, CdkPortalOutlet, TemplatePortalDirective, PortalHostDirective]
     }]
   }], null, null);
 })();
@@ -561,4 +546,4 @@ export {
   CdkPortalOutlet,
   PortalModule
 };
-//# sourceMappingURL=chunk-AY3JNCMM.js.map
+//# sourceMappingURL=chunk-X6VDRPCS.js.map

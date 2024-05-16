@@ -1,15 +1,22 @@
-.navbar{
-  background-color: rgb(15, 99, 124);
+.navbar {
+  margin-left: 0;
+  margin-right: 0;
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 128, 0, 0.637),
+    rgba(210, 223, 33, 0.788)
+  );
 }
 
-.navbar-brand{
+.navbar-brand {
   margin: 1rem;
   text-align: center;
 }
 
-.nav-item{
+.nav-item {
   align-self: center;
   margin: 1rem;
+  transition: transform 0.5s;
 }
 
 .nav-item:hover {
@@ -17,21 +24,34 @@
   border-radius: 1rem;
 }
 
-.nav-item{
-  transition: transform .5s
-}
-
-
 .nav-item-img {
   margin: 0;
 }
 
-.prof-img{
-  transition: transform .5s;
+.prof-img {
+  transition: transform 0.5s;
   border-radius: 5rem;
   width: 12rem;
 }
 
-.nav-link{
+.nav-link {
   text-align: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.rodape {
+  margin-top: auto;
+  background-color: #3f51b5;
+  position: relative;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.copy {
+  background-color: rgba(0, 0, 0, 0.2);
 }

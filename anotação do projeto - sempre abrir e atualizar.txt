@@ -135,4 +135,10 @@ no componente Pessoal.
 - adicionar campos para envio da documentação comprobatoria === resolvido
 - como adicionar arquivos em um banco de dados ? 
 - mudar a cor da label ao anexar um documento ?
-- apagar os dados digitados ao clicar em submit. 
+- apagar os dados digitados ao clicar em submit. ? 
+
+16/05 
+
+- Definir uma homePage ?
+- começar a trabalhar com o docker ?
+- alterações visuais e melhoria de funções, inclusão de um footer  

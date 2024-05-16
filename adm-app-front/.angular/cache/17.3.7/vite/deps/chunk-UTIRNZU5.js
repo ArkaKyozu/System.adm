@@ -1,19 +1,19 @@
 import {
-  DomPortalOutlet,
-  PortalModule,
-  TemplatePortal
-} from "./chunk-AY3JNCMM.js";
-import {
   ScrollDispatcher,
   ScrollingModule,
   ViewportRuler
-} from "./chunk-625IBW3P.js";
+} from "./chunk-BW2AUJJX.js";
+import {
+  DomPortalOutlet,
+  PortalModule,
+  TemplatePortal
+} from "./chunk-X6VDRPCS.js";
 import {
   BidiModule,
   Directionality,
   ESCAPE,
   hasModifierKey
-} from "./chunk-OBIN66RD.js";
+} from "./chunk-QSKNOG4A.js";
 import {
   Platform,
   _getEventTarget,
@@ -21,7 +21,7 @@ import {
   coerceArray,
   coerceCssPixelValue,
   supportsScrollBehavior
-} from "./chunk-YCBXNVLA.js";
+} from "./chunk-IFDK24WJ.js";
 import {
   DOCUMENT,
   Location
@@ -46,7 +46,6 @@ import {
   TemplateRef,
   ViewContainerRef,
   booleanAttribute,
-  inject,
   merge,
   setClassMetadata,
   ɵɵInputTransformsFeature,
@@ -1430,15 +1429,12 @@ var FlexibleConnectedPositionStrategy = class {
     if (position.panelClass) {
       this._addPanelClasses(position.panelClass);
     }
-    if (this._positionChanges.observers.length) {
-      const scrollVisibility = this._getScrollVisibility();
-      if (position !== this._lastPosition || !this._lastScrollVisibility || !compareScrollVisibility(this._lastScrollVisibility, scrollVisibility)) {
-        const changeEvent = new ConnectedOverlayPositionChange(position, scrollVisibility);
-        this._positionChanges.next(changeEvent);
-      }
-      this._lastScrollVisibility = scrollVisibility;
-    }
     this._lastPosition = position;
+    if (this._positionChanges.observers.length) {
+      const scrollableViewProperties = this._getScrollVisibility();
+      const changeEvent = new ConnectedOverlayPositionChange(position, scrollableViewProperties);
+      this._positionChanges.next(changeEvent);
+    }
     this._isInitialRender = false;
   }
   /** Sets the transform origin based on the configured selector and the passed-in position.  */
@@ -1489,7 +1485,7 @@ var FlexibleConnectedPositionStrategy = class {
     const isBoundedByLeftViewportEdge = position.overlayX === "end" && !isRtl || position.overlayX === "start" && isRtl;
     let width, left, right;
     if (isBoundedByLeftViewportEdge) {
-      right = viewport.width - origin.x + this._viewportMargin * 2;
+      right = viewport.width - origin.x + this._viewportMargin;
       width = origin.x - this._viewportMargin;
     } else if (isBoundedByRightViewportEdge) {
       left = origin.x;
@@ -1750,7 +1746,7 @@ var FlexibleConnectedPositionStrategy = class {
       this._appliedPanelClasses = [];
     }
   }
-  /** Returns the DOMRect of the current origin. */
+  /** Returns the ClientRect of the current origin. */
   _getOriginRect() {
     const origin = this._origin;
     if (origin instanceof ElementRef) {
@@ -1795,12 +1791,6 @@ function getRoundedBoundingClientRect(clientRect) {
     width: Math.floor(clientRect.width),
     height: Math.floor(clientRect.height)
   };
-}
-function compareScrollVisibility(a, b) {
-  if (a === b) {
-    return true;
-  }
-  return a.isOriginClipped === b.isOriginClipped && a.isOriginOutsideView === b.isOriginOutsideView && a.isOverlayClipped === b.isOverlayClipped && a.isOverlayOutsideView === b.isOverlayOutsideView;
 }
 var wrapperClass = "cdk-global-overlay-wrapper";
 var GlobalPositionStrategy = class {
@@ -2209,13 +2199,7 @@ var defaultPositionList = [{
   overlayX: "end",
   overlayY: "top"
 }];
-var CDK_CONNECTED_OVERLAY_SCROLL_STRATEGY = new InjectionToken("cdk-connected-overlay-scroll-strategy", {
-  providedIn: "root",
-  factory: () => {
-    const overlay = inject(Overlay);
-    return () => overlay.scrollStrategies.reposition();
-  }
-});
+var CDK_CONNECTED_OVERLAY_SCROLL_STRATEGY = new InjectionToken("cdk-connected-overlay-scroll-strategy");
 var _CdkOverlayOrigin = class _CdkOverlayOrigin {
   constructor(elementRef) {
     this.elementRef = elementRef;
@@ -2280,7 +2264,6 @@ var _CdkConnectedOverlay = class _CdkConnectedOverlay {
     this._detachSubscription = Subscription.EMPTY;
     this._positionSubscription = Subscription.EMPTY;
     this._disposeOnNavigation = false;
-    this._ngZone = inject(NgZone);
     this.viewportMargin = 0;
     this.open = false;
     this.disableClose = false;
@@ -2349,11 +2332,7 @@ var _CdkConnectedOverlay = class _CdkConnectedOverlay {
       }
     });
     this._overlayRef.outsidePointerEvents().subscribe((event) => {
-      const origin = this._getOriginElement();
-      const target = _getEventTarget(event);
-      if (!origin || origin !== target && !origin.contains(target)) {
-        this.overlayOutsideClick.next(event);
-      }
+      this.overlayOutsideClick.next(event);
     });
   }
   /** Builds the overlay config based on the directive's inputs */
@@ -2397,32 +2376,20 @@ var _CdkConnectedOverlay = class _CdkConnectedOverlay {
       offsetY: currentPosition.offsetY || this.offsetY,
       panelClass: currentPosition.panelClass || void 0
     }));
-    return positionStrategy.setOrigin(this._getOrigin()).withPositions(positions).withFlexibleDimensions(this.flexibleDimensions).withPush(this.push).withGrowAfterOpen(this.growAfterOpen).withViewportMargin(this.viewportMargin).withLockedPosition(this.lockPosition).withTransformOriginOn(this.transformOriginSelector);
+    return positionStrategy.setOrigin(this._getFlexibleConnectedPositionStrategyOrigin()).withPositions(positions).withFlexibleDimensions(this.flexibleDimensions).withPush(this.push).withGrowAfterOpen(this.growAfterOpen).withViewportMargin(this.viewportMargin).withLockedPosition(this.lockPosition).withTransformOriginOn(this.transformOriginSelector);
   }
   /** Returns the position strategy of the overlay to be set on the overlay config */
   _createPositionStrategy() {
-    const strategy = this._overlay.position().flexibleConnectedTo(this._getOrigin());
+    const strategy = this._overlay.position().flexibleConnectedTo(this._getFlexibleConnectedPositionStrategyOrigin());
     this._updatePositionStrategy(strategy);
     return strategy;
   }
-  _getOrigin() {
+  _getFlexibleConnectedPositionStrategyOrigin() {
     if (this.origin instanceof CdkOverlayOrigin) {
       return this.origin.elementRef;
     } else {
       return this.origin;
     }
-  }
-  _getOriginElement() {
-    if (this.origin instanceof CdkOverlayOrigin) {
-      return this.origin.elementRef.nativeElement;
-    }
-    if (this.origin instanceof ElementRef) {
-      return this.origin.nativeElement;
-    }
-    if (typeof Element !== "undefined" && this.origin instanceof Element) {
-      return this.origin;
-    }
-    return null;
   }
   /** Attaches the overlay and subscribes to backdrop clicks if backdrop exists */
   _attachOverlay() {
@@ -2444,7 +2411,7 @@ var _CdkConnectedOverlay = class _CdkConnectedOverlay {
     this._positionSubscription.unsubscribe();
     if (this.positionChange.observers.length > 0) {
       this._positionSubscription = this._position.positionChanges.pipe(takeWhile(() => this.positionChange.observers.length > 0)).subscribe((position) => {
-        this._ngZone.run(() => this.positionChange.emit(position));
+        this.positionChange.emit(position);
         if (this.positionChange.observers.length === 0) {
           this._positionSubscription.unsubscribe();
         }
@@ -2779,4 +2746,4 @@ export {
   CdkConnectedOverlay,
   OverlayModule
 };
-//# sourceMappingURL=chunk-EU6C4KQX.js.map
+//# sourceMappingURL=chunk-UTIRNZU5.js.map

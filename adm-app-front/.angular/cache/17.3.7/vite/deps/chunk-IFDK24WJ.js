@@ -185,12 +185,6 @@ function supportsPassiveEventListeners() {
 function normalizePassiveListenerOptions(options) {
   return supportsPassiveEventListeners() ? options : !!options.capture;
 }
-var RtlScrollAxisType;
-(function(RtlScrollAxisType2) {
-  RtlScrollAxisType2[RtlScrollAxisType2["NORMAL"] = 0] = "NORMAL";
-  RtlScrollAxisType2[RtlScrollAxisType2["NEGATED"] = 1] = "NEGATED";
-  RtlScrollAxisType2[RtlScrollAxisType2["INVERTED"] = 2] = "INVERTED";
-})(RtlScrollAxisType || (RtlScrollAxisType = {}));
 var rtlScrollAxisType;
 var scrollBehaviorSupported;
 function supportsScrollBehavior() {
@@ -214,7 +208,7 @@ function supportsScrollBehavior() {
 }
 function getRtlScrollAxisType() {
   if (typeof document !== "object" || !document) {
-    return RtlScrollAxisType.NORMAL;
+    return 0;
   }
   if (rtlScrollAxisType == null) {
     const scrollContainer = document.createElement("div");
@@ -231,10 +225,10 @@ function getRtlScrollAxisType() {
     contentStyle.height = "1px";
     scrollContainer.appendChild(content);
     document.body.appendChild(scrollContainer);
-    rtlScrollAxisType = RtlScrollAxisType.NORMAL;
+    rtlScrollAxisType = 0;
     if (scrollContainer.scrollLeft === 0) {
       scrollContainer.scrollLeft = 1;
-      rtlScrollAxisType = scrollContainer.scrollLeft === 0 ? RtlScrollAxisType.NEGATED : RtlScrollAxisType.INVERTED;
+      rtlScrollAxisType = scrollContainer.scrollLeft === 0 ? 1 : 2;
     }
     scrollContainer.remove();
   }
@@ -359,7 +353,7 @@ function createEmptyStyleRule(query, nonce) {
     if (!mediaQueryStyleNode) {
       mediaQueryStyleNode = document.createElement("style");
       if (nonce) {
-        mediaQueryStyleNode.setAttribute("nonce", nonce);
+        mediaQueryStyleNode.nonce = nonce;
       }
       mediaQueryStyleNode.setAttribute("type", "text/css");
       document.head.appendChild(mediaQueryStyleNode);
@@ -507,7 +501,6 @@ export {
   Platform,
   getSupportedInputTypes,
   normalizePassiveListenerOptions,
-  RtlScrollAxisType,
   supportsScrollBehavior,
   getRtlScrollAxisType,
   _getShadowRoot,
@@ -519,4 +512,4 @@ export {
   BreakpointObserver,
   Breakpoints
 };
-//# sourceMappingURL=chunk-YCBXNVLA.js.map
+//# sourceMappingURL=chunk-IFDK24WJ.js.map

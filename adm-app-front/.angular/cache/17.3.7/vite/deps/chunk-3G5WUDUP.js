@@ -2,7 +2,7 @@ import {
   Directionality,
   MatCommonModule,
   ObserversModule
-} from "./chunk-OBIN66RD.js";
+} from "./chunk-QSKNOG4A.js";
 import {
   animate,
   state,
@@ -13,7 +13,7 @@ import {
 import {
   Platform,
   coerceBooleanProperty
-} from "./chunk-YCBXNVLA.js";
+} from "./chunk-IFDK24WJ.js";
 import {
   CommonModule,
   DOCUMENT,
@@ -87,7 +87,7 @@ import {
 
 // node_modules/@angular/cdk/fesm2022/observers/private.mjs
 var loopLimitExceededErrorHandler = (e) => {
-  if (e instanceof ErrorEvent && e.message === "ResizeObserver loop limit exceeded") {
+  if (e instanceof Error && e.message === "ResizeObserver loop limit exceeded") {
     console.error(`${e.message}. This could indicate a performance issue with your app. See https://github.com/WICG/resize-observer/blob/master/explainer.md#error-handling`);
   }
 };
@@ -1569,4 +1569,4 @@ export {
   MatFormField,
   MatFormFieldModule
 };
-//# sourceMappingURL=chunk-DBR4NIIT.js.map
+//# sourceMappingURL=chunk-3G5WUDUP.js.map

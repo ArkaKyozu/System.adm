@@ -1,12 +1,12 @@
 import {
   MatIcon,
   MatIconModule
-} from "./chunk-PFNKDDXW.js";
+} from "./chunk-AW5YORZ4.js";
 import {
   CdkPortalOutlet,
   PortalModule,
   TemplatePortal
-} from "./chunk-AY3JNCMM.js";
+} from "./chunk-X6VDRPCS.js";
 import {
   BidiModule,
   Directionality,
@@ -20,7 +20,7 @@ import {
   SPACE,
   hasModifierKey,
   mixinColor
-} from "./chunk-OBIN66RD.js";
+} from "./chunk-QSKNOG4A.js";
 import {
   animate,
   animateChild,
@@ -34,7 +34,7 @@ import {
 import "./chunk-I3BEXHMZ.js";
 import {
   _getFocusedElementPierceShadowDom
-} from "./chunk-YCBXNVLA.js";
+} from "./chunk-IFDK24WJ.js";
 import "./chunk-4WOKRVJH.js";
 import {
   CommonModule,
@@ -72,7 +72,6 @@ import {
   ɵɵInputTransformsFeature,
   ɵɵNgOnChangesFeature,
   ɵɵProvidersFeature,
-  ɵɵStandaloneFeature,
   ɵɵadvance,
   ɵɵattribute,
   ɵɵclassMapInterpolate1,
@@ -146,8 +145,7 @@ _CdkStepHeader.ɵfac = function CdkStepHeader_Factory(t) {
 _CdkStepHeader.ɵdir = ɵɵdefineDirective({
   type: _CdkStepHeader,
   selectors: [["", "cdkStepHeader", ""]],
-  hostAttrs: ["role", "tab"],
-  standalone: true
+  hostAttrs: ["role", "tab"]
 });
 var CdkStepHeader = _CdkStepHeader;
 (() => {
@@ -157,8 +155,7 @@ var CdkStepHeader = _CdkStepHeader;
       selector: "[cdkStepHeader]",
       host: {
         "role": "tab"
-      },
-      standalone: true
+      }
     }]
   }], () => [{
     type: ElementRef
@@ -174,16 +171,14 @@ _CdkStepLabel.ɵfac = function CdkStepLabel_Factory(t) {
 };
 _CdkStepLabel.ɵdir = ɵɵdefineDirective({
   type: _CdkStepLabel,
-  selectors: [["", "cdkStepLabel", ""]],
-  standalone: true
+  selectors: [["", "cdkStepLabel", ""]]
 });
 var CdkStepLabel = _CdkStepLabel;
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(CdkStepLabel, [{
     type: Directive,
     args: [{
-      selector: "[cdkStepLabel]",
-      standalone: true
+      selector: "[cdkStepLabel]"
     }]
   }], () => [{
     type: TemplateRef
@@ -300,8 +295,7 @@ _CdkStep.ɵcmp = ɵɵdefineComponent({
     interactedStream: "interacted"
   },
   exportAs: ["cdkStep"],
-  standalone: true,
-  features: [ɵɵInputTransformsFeature, ɵɵNgOnChangesFeature, ɵɵStandaloneFeature],
+  features: [ɵɵInputTransformsFeature, ɵɵNgOnChangesFeature],
   ngContentSelectors: _c0,
   decls: 1,
   vars: 0,
@@ -323,8 +317,7 @@ var CdkStep = _CdkStep;
       exportAs: "cdkStep",
       template: "<ng-template><ng-content></ng-content></ng-template>",
       encapsulation: ViewEncapsulation$1.None,
-      changeDetection: ChangeDetectionStrategy.OnPush,
-      standalone: true
+      changeDetection: ChangeDetectionStrategy.OnPush
     }]
   }], () => [{
     type: CdkStepper,
@@ -630,7 +623,6 @@ _CdkStepper.ɵdir = ɵɵdefineDirective({
     selectedIndexChange: "selectedIndexChange"
   },
   exportAs: ["cdkStepper"],
-  standalone: true,
   features: [ɵɵInputTransformsFeature]
 });
 var CdkStepper = _CdkStepper;
@@ -639,8 +631,7 @@ var CdkStepper = _CdkStepper;
     type: Directive,
     args: [{
       selector: "[cdkStepper]",
-      exportAs: "cdkStepper",
-      standalone: true
+      exportAs: "cdkStepper"
     }]
   }], () => [{
     type: Directionality,
@@ -715,8 +706,7 @@ _CdkStepperNext.ɵdir = ɵɵdefineDirective({
   },
   inputs: {
     type: "type"
-  },
-  standalone: true
+  }
 });
 var CdkStepperNext = _CdkStepperNext;
 (() => {
@@ -727,8 +717,7 @@ var CdkStepperNext = _CdkStepperNext;
       host: {
         "[type]": "type",
         "(click)": "_stepper.next()"
-      },
-      standalone: true
+      }
     }]
   }], () => [{
     type: CdkStepper
@@ -763,8 +752,7 @@ _CdkStepperPrevious.ɵdir = ɵɵdefineDirective({
   },
   inputs: {
     type: "type"
-  },
-  standalone: true
+  }
 });
 var CdkStepperPrevious = _CdkStepperPrevious;
 (() => {
@@ -775,8 +763,7 @@ var CdkStepperPrevious = _CdkStepperPrevious;
       host: {
         "[type]": "type",
         "(click)": "_stepper.previous()"
-      },
-      standalone: true
+      }
     }]
   }], () => [{
     type: CdkStepper
@@ -793,7 +780,8 @@ _CdkStepperModule.ɵfac = function CdkStepperModule_Factory(t) {
 };
 _CdkStepperModule.ɵmod = ɵɵdefineNgModule({
   type: _CdkStepperModule,
-  imports: [BidiModule, CdkStep, CdkStepper, CdkStepHeader, CdkStepLabel, CdkStepperNext, CdkStepperPrevious],
+  declarations: [CdkStep, CdkStepper, CdkStepHeader, CdkStepLabel, CdkStepperNext, CdkStepperPrevious],
+  imports: [BidiModule],
   exports: [CdkStep, CdkStepper, CdkStepHeader, CdkStepLabel, CdkStepperNext, CdkStepperPrevious]
 });
 _CdkStepperModule.ɵinj = ɵɵdefineInjector({
@@ -804,8 +792,9 @@ var CdkStepperModule = _CdkStepperModule;
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(CdkStepperModule, [{
     type: NgModule,
     args: [{
-      imports: [BidiModule, CdkStep, CdkStepper, CdkStepHeader, CdkStepLabel, CdkStepperNext, CdkStepperPrevious],
-      exports: [CdkStep, CdkStepper, CdkStepHeader, CdkStepLabel, CdkStepperNext, CdkStepperPrevious]
+      imports: [BidiModule],
+      exports: [CdkStep, CdkStepper, CdkStepHeader, CdkStepLabel, CdkStepperNext, CdkStepperPrevious],
+      declarations: [CdkStep, CdkStepper, CdkStepHeader, CdkStepLabel, CdkStepperNext, CdkStepperPrevious]
     }]
   }], null, null);
 })();

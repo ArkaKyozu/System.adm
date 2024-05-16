@@ -1,20 +1,20 @@
 import {
+  MAT_FORM_FIELD,
+  MatFormField,
+  MatFormFieldControl,
+  MatFormFieldModule
+} from "./chunk-3G5WUDUP.js";
+import {
   FormGroupDirective,
   NgControl,
   NgForm,
   Validators
 } from "./chunk-F5PVQVSJ.js";
 import {
-  MAT_FORM_FIELD,
-  MatFormField,
-  MatFormFieldControl,
-  MatFormFieldModule
-} from "./chunk-DBR4NIIT.js";
-import {
   ErrorStateMatcher,
   MatCommonModule,
   mixinErrorState
-} from "./chunk-OBIN66RD.js";
+} from "./chunk-QSKNOG4A.js";
 import {
   Platform,
   coerceBooleanProperty,
@@ -22,7 +22,7 @@ import {
   coerceNumberProperty,
   getSupportedInputTypes,
   normalizePassiveListenerOptions
-} from "./chunk-YCBXNVLA.js";
+} from "./chunk-IFDK24WJ.js";
 import {
   DOCUMENT
 } from "./chunk-7PR7W5GB.js";
@@ -170,16 +170,14 @@ _CdkAutofill.ɵdir = ɵɵdefineDirective({
   selectors: [["", "cdkAutofill", ""]],
   outputs: {
     cdkAutofill: "cdkAutofill"
-  },
-  standalone: true
+  }
 });
 var CdkAutofill = _CdkAutofill;
 (() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(CdkAutofill, [{
     type: Directive,
     args: [{
-      selector: "[cdkAutofill]",
-      standalone: true
+      selector: "[cdkAutofill]"
     }]
   }], () => [{
     type: ElementRef
@@ -426,7 +424,6 @@ _CdkTextareaAutosize.ɵdir = ɵɵdefineDirective({
     placeholder: "placeholder"
   },
   exportAs: ["cdkTextareaAutosize"],
-  standalone: true,
   features: [ɵɵInputTransformsFeature]
 });
 var CdkTextareaAutosize = _CdkTextareaAutosize;
@@ -442,8 +439,7 @@ var CdkTextareaAutosize = _CdkTextareaAutosize;
         // Browsers normally show two rows by default and therefore this limits the minRows binding.
         "rows": "1",
         "(input)": "_noopInputHandler()"
-      },
-      standalone: true
+      }
     }]
   }], () => [{
     type: ElementRef
@@ -487,7 +483,7 @@ _TextFieldModule.ɵfac = function TextFieldModule_Factory(t) {
 };
 _TextFieldModule.ɵmod = ɵɵdefineNgModule({
   type: _TextFieldModule,
-  imports: [CdkAutofill, CdkTextareaAutosize],
+  declarations: [CdkAutofill, CdkTextareaAutosize],
   exports: [CdkAutofill, CdkTextareaAutosize]
 });
 _TextFieldModule.ɵinj = ɵɵdefineInjector({});
@@ -496,7 +492,7 @@ var TextFieldModule = _TextFieldModule;
   (typeof ngDevMode === "undefined" || ngDevMode) && setClassMetadata(TextFieldModule, [{
     type: NgModule,
     args: [{
-      imports: [CdkAutofill, CdkTextareaAutosize],
+      declarations: [CdkAutofill, CdkTextareaAutosize],
       exports: [CdkAutofill, CdkTextareaAutosize]
     }]
   }], null, null);
@@ -944,4 +940,4 @@ export {
   MatInput,
   MatInputModule
 };
-//# sourceMappingURL=chunk-5P5EQRZV.js.map
+//# sourceMappingURL=chunk-YSTBGKHE.js.map

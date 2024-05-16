@@ -2,14 +2,13 @@
   margin-top: 4.5rem;
   margin-left: 20rem;
   margin-right: 10rem;
-
 }
 
-.mat-mdc-form-field{
+.mat-mdc-form-field {
   padding: 1rem;
 }
 
-.mat-step{
+.mat-step {
   margin-left: 15rem;
   margin-right: 20rem;
 }
@@ -18,28 +17,27 @@
   display: none;
 }
 
-.btns{
+.btns {
   text-align: right;
 }
 
-.input-group{
-  padding: 1.5rem;
+.input-group {
   display: flex;
   flex-direction: column;
-  width: 50rem;
-  margin-left: 18rem;
+  margin-left: 8rem;
+  align-content: space-between;
 }
 
-.documentos{
+.documentos {
   padding: 1.5rem;
 }
 
-.botaoSubmit{
+.botaoSubmit {
   text-align: right;
   margin-right: 20rem;
 }
 
-.input-group-text{
+.input-group-text {
   background-color: rgb(67, 192, 67);
   color: white;
 }
