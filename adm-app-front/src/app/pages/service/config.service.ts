@@ -17,7 +17,7 @@ export class ConfigService {
   ) { }
 
 
-    url: string = 'http://localhost:3000/'
+    url: string = 'http://localhost:8888/'
 
 
 // metodo post

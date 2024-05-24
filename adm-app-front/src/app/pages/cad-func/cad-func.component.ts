@@ -101,7 +101,7 @@ export class CadFuncComponent implements OnInit {
 
   ngOnInit(): void {
     this.http
-      .get<any>('http://localhost:3000/getAllCargo')
+      .get<any>('http://localhost:8888/getAllCargo')
       .subscribe((data) => {
         this.dadosCargo = data;
         this.dadosCargo.push({ id: 'novo', NomeCargo: 'cadastrar' });
@@ -186,7 +186,7 @@ export class CadFuncComponent implements OnInit {
 
   atualizarConteudo() {
     setTimeout(() => {
-      this.http.get<any>('http://localhost:3000/getAllCargo').subscribe(
+      this.http.get<any>('http://localhost:8888/getAllCargo').subscribe(
         (data) => {
           this.cargoAtualizado = data;
           console.log('cargo atualiazdo', this.cargoAtualizado);

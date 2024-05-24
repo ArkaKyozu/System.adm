@@ -26,7 +26,7 @@ export class ListProdComponent implements OnInit {
 
   ngOnInit(): void {
     this.http
-      .get<any[]>('http://localhost:3000/getAllProduto')
+      .get<any[]>('http://localhost:8888/getAllProduto')
       .subscribe((data) => {
         this.dadosApi = data;
         console.log('Dados da API:', this.dadosApi);

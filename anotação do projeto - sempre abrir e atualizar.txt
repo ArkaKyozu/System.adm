@@ -142,3 +142,9 @@ no componente Pessoal.
 - Definir uma homePage ?
 - começar a trabalhar com o docker ?
 - alterações visuais e melhoria de funções, inclusão de um footer  
+
+24/05 
+
+-tudo containernezado no docker == resolvido
+-preciso arrumar as rotas para acessar o banco de dados == resolvido
+

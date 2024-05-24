@@ -37,7 +37,7 @@ export class FinanceiroComponent implements OnInit {
 
   ngOnInit(): void {
     this.http
-      .get<any>('http://localhost:3000/getAllFinanceiro')
+      .get<any>('http://localhost:8888/getAllFinanceiro')
       .subscribe((data) => {
         this.dadosApi = data;
         console.log('Dados Api: ', this.dadosApi);

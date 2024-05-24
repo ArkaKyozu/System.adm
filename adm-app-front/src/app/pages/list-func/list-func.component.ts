@@ -21,13 +21,13 @@ export class ListFuncComponent implements OnInit {
 
   ngOnInit(): void {
     this.http
-      .get<any>('http://localhost:3000/getAllCargo')
+      .get<any>('http://localhost:8888/getAllCargo')
       .subscribe((data) => {
         this.dadosCargoApi = data;
         console.log('Dados api Cargo', this.dadosCargoApi);
       });
     this.http
-      .get<any>('http://localhost:3000/getAllPessoal')
+      .get<any>('http://localhost:8888/getAllPessoal')
       .subscribe((response) => {
         this.dadosPessoalApi = response;
         console.log('Dados da Api', this.dadosPessoalApi);
