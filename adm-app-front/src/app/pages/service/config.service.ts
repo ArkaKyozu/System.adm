@@ -2,15 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-
-
-
 @Injectable({
   providedIn: 'root'
 })
 export class ConfigService {
-
-
 
   constructor(
     private http: HttpClient
@@ -18,7 +13,6 @@ export class ConfigService {
 
 
     url: string = 'http://localhost:8888/'
-
 
 // metodo post
 
@@ -56,8 +50,6 @@ export class ConfigService {
   deleteCargo(id:number): Observable<any>{
     return this.http.delete<any>(`${this.url}deleteCargo/${id}`)
   }
-
-
 
   // Metodos Update
 
